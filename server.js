@@ -1,12 +1,11 @@
 // require('colors')
-const cors = require('cors')
 const express = require('express')
 // const mongoose = require('mongoose')
 // const bcrypt = require('bcrypt')
 // mongoose.set('useCreateIndex', true)
 // require('express-async-errors')
 // const multiparty = require('connect-multiparty')
-// require('dotenv').config()
+require('dotenv').config()
 
 // const config = require('./config')
 // const userModel = require('./model/user')
@@ -20,7 +19,6 @@ const express = require('express')
 //     .catch(error => console.log(`Connect MongoDB error!`.red))
 const path=require('path')
 const app = express()
-app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
 
@@ -41,7 +39,7 @@ app.use('/api/category',(req,res)=>{
 // app.get('/api/checkToken', middleware.checkToken)
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
+  res.sendFile(path.join(__dirname + '/build/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
