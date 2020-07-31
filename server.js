@@ -15,7 +15,7 @@ const middleware = require('./utils/middleware')
 
 const categoryRouter = require('./controller/category')
 
-mongoose.connect(config.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://cuong:PO7O31llcgwnp2I4@cluster0-w8cgc.mongodb.net/harukostore?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => console.log(`Connect MongDB successly!`.green))
     .catch(error => console.log(`Connect MongoDB error!`.red))
 const path=require('path')
