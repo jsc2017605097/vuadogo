@@ -1,19 +1,39 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import userAction from '../actions/user'
 
 export default function Authentication(PageNeedAuthentication) {
     return function Page() {
         const token = window.localStorage.getItem('token')
-        const history = useHistory()
-        if (!token) {
-            history.push('/login')
+        const [authorization, setAuthorization] = useState('AUTHEN')
+        const dispatch = useDispatch()
+
+        useEffect(() => {
+
+            axios.get('/api/checkToken', { headers: { Authorization: token } })
+                .then(res => {
+                    dispatch(userAction.checkTokenSuccessly(res.data))
+                    setAuthorization('PAGE')
+                })
+                .catch(error => {
+                    dispatch(userAction.checkTokenError)
+                    setAuthorization('LOGIN')
+                })
+        }, [dispatch, token])
+
+        const ComponentShow = () => {
+            switch (authorization) {
+                case 'LOGIN':
+                    return <Redirect to='/login' />
+                case 'PAGE':
+                    return <PageNeedAuthentication />
+                default:
+                    return <div>Loading...</div>
+            }
         }
 
-        axios.get('/api/checkToken')
-            .then(res => console.log(res.data))
-            .catch(error => console.log(error.response.data))
-
-        return <PageNeedAuthentication />
+        return <ComponentShow />
     }
 }

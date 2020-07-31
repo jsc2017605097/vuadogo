@@ -1,17 +1,31 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 
-import './App.css'
+import './css/admin-home.css'
+
 import LoginPage from './pages/Login'
 import Authentication from './components/Authentication'
 import AdminHome from './pages/AdminHome'
 import AdminProductDetail from './pages/AdminProductDetail'
 
+import categoryAction from './actions/category'
+
 const AuthenAdminHome = Authentication(AdminHome)
 const AuthenAdminProductDetail = Authentication(AdminProductDetail)
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    axios.get('/api/category')
+      .then(res => {
+        dispatch(categoryAction.initCategory(res.data))
+      })
+      .catch()
+  }, [dispatch])
+
   return (
     <Router>
       <Switch>
