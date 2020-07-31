@@ -12,9 +12,6 @@ import AdminProductDetail from './pages/AdminProductDetail'
 
 import categoryAction from './actions/category'
 
-const AuthenAdminHome = Authentication(AdminHome)
-const AuthenAdminProductDetail = Authentication(AdminProductDetail)
-
 function App() {
   const dispatch = useDispatch()
 
@@ -29,14 +26,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/admin/product/:id'>
-          <AuthenAdminProductDetail />
-        </Route>
-        <Route path='/admin/categories'>
-          categories
-        </Route>
         <Route path='/admin'>
-          <AuthenAdminHome />
+          <AdminHome />
         </Route>
 
         <Route path='/login'>
@@ -49,7 +40,7 @@ function App() {
         <Route path='/product/:id'>
           Chi tiet san pham
         </Route>
-        <Route path='/'>
+        <Route path='/' exact>
           Home
         </Route>
       </Switch>
