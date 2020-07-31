@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 mongoose.set('useCreateIndex', true)
 require('express-async-errors')
 const multiparty = require('connect-multiparty')
+require('dotenv').config()
 
 const config = require('./config')
 const userModel = require('./model/user')
@@ -38,7 +39,7 @@ app.post('/api/login', loginController)
 app.get('/api/checkToken', middleware.checkToken)
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/build/index.html'), function(err) {
+  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
