@@ -22,13 +22,7 @@ const app = express()
 app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
-      if (err) {
-        res.status(500).send(err)
-      }
-    })
-  })
+
 app.use(middleware.entryPoint)
 
 app.use('/api/category',categoryRouter)
@@ -42,6 +36,14 @@ app.post('/api/user', async (req, res) => {
 app.post('/api/login', loginController)
 
 app.get('/api/checkToken', middleware.checkToken)
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 const multipartyMiddleware = multiparty({uploadDir:'./images'})
 app.post('/api/uploads',multipartyMiddleware,(req,res)=>{
