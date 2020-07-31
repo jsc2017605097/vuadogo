@@ -38,7 +38,7 @@ app.use('/api/category',(req,res)=>{
 // app.get('/api/checkToken', middleware.checkToken)
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/build/index.html'), function(err) {
+  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
@@ -52,5 +52,5 @@ app.get('/*', function(req, res) {
 // app.use(middleware.unknowEndpoint)
 // app.use(middleware.handleError)
 
-const PORT = 3001 || process.env.PORT
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log(`Server started with port = ${PORT}`))
