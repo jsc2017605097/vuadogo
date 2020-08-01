@@ -3,18 +3,22 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './css/admin-home.css'
 import AdminHome from './pages/AdminHome'
 import axios from 'axios'
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function App() {
   const [selectedFile, setSelectedFile] = React.useState(null)
-  const [uploadedImg, setUploadedImg] = React.useState({status:'init'})
+  const [uploadedImg, setUploadedImg] = React.useState({ status: 'init' })
+  const [ckeditor,setCkeditor] = React.useState('content')
 
+  console.log(ckeditor)
   function handleSelectedFile(event) {
     setSelectedFile(event.target.files[0])
   }
 
   function handleSubmit(event) {
     event.preventDefault()
-    setUploadedImg({status:'uploading'})
+    setUploadedImg({ status: 'uploading' })
     const formData = new FormData()
     formData.append('myFile', selectedFile)
     axios({
@@ -23,12 +27,12 @@ function App() {
       data: formData,
       headers: { "Content-Type": "multipart/form-data", "Authorization": "token ne" }
     }).then(res =>
-      setUploadedImg({ status:'uploaded', url: res.data }))
-      .catch(error => { setUploadedImg({ status:'error', error: error.response.data }) })
+      setUploadedImg({ status: 'uploaded', url: res.data }))
+      .catch(error => { setUploadedImg({ status: 'error', error: error.response.data }) })
   }
 
   function LoadImg() {
-    switch(uploadedImg.status){
+    switch (uploadedImg.status) {
       case 'init':
         return null
       case 'uploading':
@@ -52,6 +56,22 @@ function App() {
             <button type='submit'>Upload</button>
           </form>
           <LoadImg />
+          <br />
+          <CKEditor
+            editor={ClassicEditor}
+            data={ckeditor}
+            config={
+              {
+                ckfinder:{
+                  uploadUrl:'/ckeditor/upload'
+                }
+              }
+            }
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              setCkeditor(data)
+            }}
+          />
         </Route>
         <Route path='/' exact>
           Home

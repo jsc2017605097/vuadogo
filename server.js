@@ -3,7 +3,9 @@ const app = express()
 const path = require('path')
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
+const multiparty = require('connect-multiparty')
 
+const multipartyMiddleware = multiparty({uploadDir:'./build'})
 app.use(fileUpload())
 app.use(cors())
 app.use(express.json())
@@ -20,6 +22,9 @@ app.post('/upload', (req, res) => {
         }
         res.status(200).send(path.join('./',myFile.name))
     })
+})
+app.post('/ckeditor/upload',multipartyMiddleware,(req,res)=>{
+    console.log(req.files.upload)
 })
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build/index.html'))
