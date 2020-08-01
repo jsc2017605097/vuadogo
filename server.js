@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 const multiparty = require('connect-multiparty')
 
 const multipartyMiddleware = multiparty({uploadDir:'./build'})
-app.use(fileUpload())
+// app.use(fileUpload())
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'build')))
