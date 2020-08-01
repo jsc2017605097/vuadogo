@@ -1,44 +1,45 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
-
 import './css/admin-home.css'
-
-import LoginPage from './pages/Login'
-import Authentication from './components/Authentication'
 import AdminHome from './pages/AdminHome'
-import AdminProductDetail from './pages/AdminProductDetail'
-
-import categoryAction from './actions/category'
+import axios from 'axios'
 
 function App() {
-  const dispatch = useDispatch()
+  const [selectedFile, setSelectedFile] = React.useState(null)
+  const [uploadedImg,setUploadedImg] = React.useState(null)
 
-  useEffect(() => {
-    axios.get('/api/category')
-      .then(res => {
-        dispatch(categoryAction.initCategory(res.data))
-      })
-      .catch()
-  }, [dispatch])
+  function handleSelectedFile(event) {
+    setSelectedFile(event.target.files[0])
+  }
 
+  function handleSubmit(event) {
+    event.preventDefault()
+    const formData = new FormData()
+    formData.append('myFile', selectedFile)
+    axios({
+      method: 'post',
+      url: '/upload',
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data","Authorization":"token ne" }
+    }).then(res =>
+      setUploadedImg(res.data))
+      .catch(error => console.log(error.response.data))
+  }
+
+  console.log('File selected: ', selectedFile)
   return (
     <Router>
       <Switch>
         <Route path='/admin'>
           <AdminHome />
         </Route>
-
-        <Route path='/login'>
-          <LoginPage />
-        </Route>
-
-        <Route path='/giohang'>
-          Gio Hang
-        </Route>
-        <Route path='/product/:id'>
-          Chi tiet san pham
+        <Route path='/upload'>
+          <form onSubmit={handleSubmit}>
+            <input type='file' onChange={handleSelectedFile}/>
+            <br />
+            <button type='submit'>Upload</button>
+          </form>
+          {uploadedImg && <img src='C:/project/harukostore.net/images/Capture.PNG' />}
         </Route>
         <Route path='/' exact>
           Home
