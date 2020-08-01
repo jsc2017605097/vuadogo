@@ -18,7 +18,7 @@ app.post('/upload', (req, res) => {
         if (error) {
             return res.status(500).send(`Cannot upload ${myFile.name}, please upload again!`)
         }
-        res.status(200).send(path.join('/images',myFile.name))
+        res.status(200).send(path.join('../images',myFile.name))
     })
 })
 app.get('/*', (req, res) => {

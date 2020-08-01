@@ -34,7 +34,7 @@ function App() {
       case 'uploading':
         return <p>{uploadedImg.error}</p>
       case 'uploaded':
-        return <img src={window.location.origin + uploadedImg.url} />
+        return <img src={uploadedImg.url} alt={uploadedImg} />
       default:
         return null
     }
