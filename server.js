@@ -4,11 +4,13 @@ const path = require('path')
 const cors = require('cors')
 const fileUpload = require('express-fileupload');
 const multiparty = require('connect-multiparty')
+const bodyParser = require('body-parser')
 
 const multipartyMiddleware = multiparty({uploadDir:'./build'})
 // app.use(fileUpload())
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
-app.use(express.json())
+app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.get('/api', (req, res) => {
