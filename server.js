@@ -5,7 +5,7 @@ const cors = require('cors')
 const fileUpload = require('express-fileupload');
 const multiparty = require('connect-multiparty')
 const bodyParser = require('body-parser')
-
+const morgan = require('morgan')
 const multipartyMiddleware = multiparty({uploadDir:'./build'})
 // app.use(fileUpload())
 app.use(bodyParser.urlencoded({extended:true}))
