@@ -34,7 +34,7 @@ function App() {
       case 'uploading':
         return <p>{uploadedImg.error}</p>
       case 'uploaded':
-        return <img src={uploadedImg.url} alt={uploadedImg} />
+        return <img src={uploadedImg.url} alt={uploadedImg.url} />
       default:
         return null
     }
