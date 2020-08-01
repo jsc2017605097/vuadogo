@@ -6,7 +6,7 @@ import axios from 'axios'
 
 function App() {
   const [selectedFile, setSelectedFile] = React.useState(null)
-  const [uploadedImg,setUploadedImg] = React.useState(null)
+  const [uploadedImg, setUploadedImg] = React.useState({status:'init'})
 
   function handleSelectedFile(event) {
     setSelectedFile(event.target.files[0])
@@ -14,19 +14,31 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault()
+    setUploadedImg({status:'uploading'})
     const formData = new FormData()
     formData.append('myFile', selectedFile)
     axios({
       method: 'post',
       url: '/upload',
       data: formData,
-      headers: { "Content-Type": "multipart/form-data","Authorization":"token ne" }
+      headers: { "Content-Type": "multipart/form-data", "Authorization": "token ne" }
     }).then(res =>
-      setUploadedImg(res.data))
-      .catch(error => console.log(error.response.data))
+      setUploadedImg({ status:'uploaded', url: res.data }))
+      .catch(error => { setUploadedImg({ status:'error', error: error.response.data }) })
   }
 
-  console.log('File selected: ', selectedFile)
+  function LoadImg() {
+    switch(uploadedImg.status){
+      case 'init':
+        return null
+      case 'uploading':
+        return <p>{uploadedImg.error}</p>
+      case 'uploaded':
+        return <img src={uploadedImg.url} />
+      default:
+        return null
+    }
+  }
   return (
     <Router>
       <Switch>
@@ -35,11 +47,11 @@ function App() {
         </Route>
         <Route path='/upload'>
           <form onSubmit={handleSubmit}>
-            <input type='file' onChange={handleSelectedFile}/>
+            <input type='file' onChange={handleSelectedFile} />
             <br />
             <button type='submit'>Upload</button>
           </form>
-          {uploadedImg && <img src='C:/project/harukostore.net/images/Capture.PNG' />}
+          <LoadImg />
         </Route>
         <Route path='/' exact>
           Home
