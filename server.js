@@ -1,16 +1,17 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-// const cors = require('cors')
-// const fileUpload = require('express-fileupload');
-const multiparty = require('connect-multiparty')
+const cors = require('cors')
+const fileUpload = require('express-fileupload');
+// const multiparty = require('connect-multiparty')
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
-const multipartyMiddleware = multiparty({uploadDir:'./build'})
-// app.use(fileUpload())
-app.use(bodyParser.urlencoded({extended:true}))
+// const morgan = require('morgan')
+// const multipartyMiddleware = multiparty({ uploadDir: './build' })
+app.use(fileUpload())
+// app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
+app.use(express.json())
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.get('/api', (req, res) => {
@@ -18,19 +19,20 @@ app.get('/api', (req, res) => {
 })
 app.post('/upload', (req, res) => {
     const { myFile } = req.files
-    myFile.mv(path.join(__dirname, 'build',myFile.name), error => {
+    myFile.mv(path.join(__dirname, 'build', myFile.name), error => {
         if (error) {
             return res.status(500).send(`Cannot upload ${myFile.name}, please upload again!`)
         }
-        res.status(200).send(path.join('./',myFile.name))
+        res.status(200).send(path.join('./', myFile.name))
     })
 })
-app.post('/ckeditor/upload',multipartyMiddleware,(req,res)=>{
+app.post('/ckeditor/upload', (req, res) => {
     console.log(req.files.upload)
-    return res.status(200).json({
-        data: 'success'
-    })
+    const { upload } = req.files
+    upload.mv(path.join('build', upload.name))
+    res.status(200).json({ uploaded: true, url: `./${upload.name}` })
 })
+
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build/index.html'))
 })
