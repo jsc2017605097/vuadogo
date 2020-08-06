@@ -33,7 +33,7 @@ app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
 // app.use(middleware.handleError)
 
 app.use('/*', (req, res) => {
-     res.sendFile(path.join(__dirname,'build','index.html')
+     res.sendFile(path.join(__dirname,'build','index.html'))
 })
 
 const PORT = process.env.PORT || 3001
