@@ -1,40 +1,39 @@
 const express = require('express')
+const middleware = require('./utils/middleware')
 const app = express()
-const path = require('path')
-const cors = require('cors')
-const fileUpload = require('express-fileupload');
-// const multiparty = require('connect-multiparty')
-const bodyParser = require('body-parser')
-// const morgan = require('morgan')
-// const multipartyMiddleware = multiparty({ uploadDir: './build' })
-app.use(fileUpload())
-// app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
-// app.use(bodyParser.json())
+require('express-async-errors')
+const mongoose = require('mongoose')
+require('dotenv').config()
+mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
+
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'build')))
+app.use(middleware.entryPoint)
+app.use(express.static('build'))
 
-app.get('/api', (req, res) => {
-    res.send('api')
-})
-app.post('/upload', (req, res) => {
-    const { myFile } = req.files
-    myFile.mv(path.join(__dirname, 'build', myFile.name), error => {
-        if (error) {
-            return res.status(500).send(`Cannot upload ${myFile.name}, please upload again!`)
-        }
-        res.status(200).send(path.join('./', myFile.name))
-    })
-})
-app.post('/ckeditor/upload', (req, res) => {
-    console.log(req.files.upload)
-    const { upload } = req.files
-    upload.mv(path.join('build', upload.name))
-    res.status(200).json({ uploaded: true, url: `./${upload.name}` })
+const userRouter = require('./route/user')
+const loginRouter = require('./route/login')
+const categoryRouter = require('./route/category')
+const productRouter = require('./route/product')
+
+const MONGO_URI = process.env.MONGO_URI
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(result => console.log('MongoDB connected...'))
+    .catch(error => console.log('MongDB connect error!'))
+
+app.use('/api/user', middleware.checkToken, userRouter)
+app.use('/api/login', loginRouter)
+app.use('/api/category', categoryRouter)
+app.use('/api/product', productRouter)
+app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
+    res.status(200).json(req.decodeToken)
 })
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build/index.html'))
+app.use(middleware.handleError)
+
+app.use('/*', (req, res) => {
+    return res.sendFile('./build/index.html')
 })
-const port = process.env.PORT || 3001
-app.listen(port, () => console.log('Server started...'))    
+
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => console.log('Server started with port = ' + PORT)) 

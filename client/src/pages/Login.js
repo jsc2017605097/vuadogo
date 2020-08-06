@@ -1,44 +1,86 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
-export default function Login() {
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+import Error from '../components/Error'
+import Loading from '../components/Loading'
+
+function Copyright() {
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <Link color="inherit" href="https://material-ui.com/">
+                Design by JSC
+      </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
+
+export default function SignIn() {
+    const classes = useStyles();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
     const history = useHistory()
-
-    useEffect(() => {
-        const token = window.localStorage.getItem("token")
-        if (token) {
-            history.push('/admin')
-        }
-    }, [history])
-
-    function handleChangeUser(event) {
-        switch (event.target.name) {
-            case 'username':
-                setUsername(event.target.value)
-                break
-            case 'password':
-                setPassword(event.target.value)
-                break
-            default:
-                return 1
-        }
-    }
 
     function handleSubmit(event) {
         event.preventDefault()
-        setError('')
         setLoading(true)
-        const user = { username, password }
-        axios.post('/api/login', user)
+        setError(null)
+
+        console.log("useranme", username)
+        console.log('password', password)
+
+        axios({
+            method: 'post',
+            url: '/api/login',
+            data: { username, password },
+            headers: { "Content-Type": "application/json" }
+        })
             .then(res => {
+                setLoading(false)
                 const token = "bearer " + res.data
-                window.localStorage.setItem("token", token)
-                history.push('/admin')
+                window.localStorage.setItem('token', token)
+                history.push('/dashboard')
             })
             .catch(error => {
                 setLoading(false)
@@ -46,22 +88,86 @@ export default function Login() {
             })
     }
 
-    function ErrorComponent() {
-        return error ? <div style={{ color: 'red' }}>{error}</div> : null
-    }
+    useEffect(() => {
+        if (window.localStorage.getItem('token')) {
+            axios({
+                method: 'get',
+                url: '/api/checktoken',
+                headers: {
+                    "Authorization": window.localStorage.getItem("token")
+                }
+            })
+                .then(res => history.push('/dashboard'))
+        }
+    }, [history])
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type='text' name='username' value={username} onChange={handleChangeUser} placeholder='username' />
-            <br />
-            <input type='password' name='password' value={password} onChange={handleChangeUser} placeholder='password' />
-            <br />
-            <button type='submit'>Login</button>
-            <ErrorComponent />
-            <br />
-            {loading && 'Loading...'}
-        </form>
-    )
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Sign in
+                </Typography>
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Username"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        onChange={(event) => setUsername(event.target.value)}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                    <FormControlLabel
+                        control={<Checkbox value="remember" color="primary" />}
+                        label="Remember me"
+                    />
+                    <Loading loading={loading} />
+                    <Error error={error} />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                    >
+                        Sign In
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                            <Link href="#" variant="body2">
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link href="#" variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </form>
+            </div>
+            <Box mt={8}>
+                <Copyright />
+            </Box>
+        </Container>
+    );
 }
-
-

@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
+
 const userSchema = new mongoose.Schema({
     username: { type: String, minlength: 6, unique: true },
     password: String,
-    name: { type: String, minlength: 6 }
+    name: { type: String, minlength: 6 },
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'products' }]
 })
 
 module.exports = mongoose.model('user', userSchema)

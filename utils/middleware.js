@@ -1,7 +1,14 @@
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 const handleError = (error, req, res, next) => {
     if (error.name === 'ValidationError') {
+        return res.status(400).send(error.message)
+    }
+    if (error.name === 'JsonWebTokenError') {
+        return res.status(400).send(error.message)
+    }
+    if (error.name === 'CastError') {
         return res.status(400).send(error.message)
     }
     next(error)
@@ -18,20 +25,20 @@ const entryPoint = (req, res, next) => {
     next()
 }
 
-const checkToken = (req, res) => {
+const checkToken = (req, res, next) => {
     const browserToken = req.get('authorization')
     if (!browserToken.startsWith('bearer ')) {
         return res.status(400).end()
     }
 
     const token = browserToken.substring(7)
-    const decodeToken = jwt.verify(token, 'secret')
+    const decodeToken = jwt.verify(token, process.env.SECRET)
 
     if (!decodeToken) {
         return res.status(401).end()
     }
-
-    res.status(200).json(decodeToken)
+    req.decodeToken = decodeToken
+    next()
 }
 module.exports = {
     handleError,

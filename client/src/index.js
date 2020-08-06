@@ -7,11 +7,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import userReducer from './reducers/user'
-import catetoryReducer from './reducers/category'
 
 const reducer = combineReducers({
-  user: userReducer,
-  categories: catetoryReducer
+  user: userReducer
 })
 
 const store = createStore(reducer, composeWithDevTools())

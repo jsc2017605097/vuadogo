@@ -1,0 +1,21 @@
+.box-shadow{
+    box-shadow: 0px 0px 8px #000;
+}
+.flex-rows{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.margin-right-10{
+    margin-right: 10px;
+}
+.margin-left-10{
+    margin-right: 10px;
+}
+.margin-bottom-10{
+    margin-bottom:10px
+}
+.cursor{
+    cursor: pointer;
+}

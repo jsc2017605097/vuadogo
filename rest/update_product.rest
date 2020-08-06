@@ -1,0 +1,10 @@
+put http://localhost:3001/api/product/5f2981ad139afa20241cd82f
+Content-Type: application/json
+
+{
+    "name": "Sữa Rửa Mặt SCFF12",
+    "price": 120000,
+    "priceOld": 500000,
+    "img": "/anh.png",
+    "detail": "detail"
+}

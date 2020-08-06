@@ -1,0 +1,6 @@
+put http://localhost:3001/api/category/5f293bafe0950323bca06bf3
+Content-Type: application/json
+
+{
+    "name":"Thuốc Trị Mụn"
+}

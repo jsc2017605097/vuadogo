@@ -1,84 +1,29 @@
-import React from 'react';
+import React from 'react'
+import './css/Dashboard.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import './css/admin-home.css'
-import AdminHome from './pages/AdminHome'
-import axios from 'axios'
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-function App() {
-  const [selectedFile, setSelectedFile] = React.useState(null)
-  const [uploadedImg, setUploadedImg] = React.useState({ status: 'init' })
-  const [ckeditor,setCkeditor] = React.useState('content')
+import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Authentication from './pages/Authentication'
 
-  console.log(ckeditor)
-  function handleSelectedFile(event) {
-    setSelectedFile(event.target.files[0])
-  }
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    setUploadedImg({ status: 'uploading' })
-    const formData = new FormData()
-    formData.append('myFile', selectedFile)
-    axios({
-      method: 'post',
-      url: '/upload',
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data", "Authorization": "token ne" }
-    }).then(res =>
-      setUploadedImg({ status: 'uploaded', url: res.data }))
-      .catch(error => { setUploadedImg({ status: 'error', error: error.response.data }) })
-  }
-
-  function LoadImg() {
-    switch (uploadedImg.status) {
-      case 'init':
-        return null
-      case 'uploading':
-        return <p>{uploadedImg.error}</p>
-      case 'uploaded':
-        return <img src={uploadedImg.url} alt={uploadedImg.url} />
-      default:
-        return null
-    }
-  }
+const ProtectToDashboard = Authentication(Dashboard)
+export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/admin'>
-          <AdminHome />
+        <Route path='/login'>
+          <Login />
         </Route>
-        <Route path='/upload'>
-          <form onSubmit={handleSubmit}>
-            <input type='file' onChange={handleSelectedFile} />
-            <br />
-            <button type='submit'>Upload</button>
-          </form>
-          <LoadImg />
-          <br />
-          <CKEditor
-            editor={ClassicEditor}
-            data={ckeditor}
-            config={
-              {
-                ckfinder:{
-                  uploadUrl:'/ckeditor/upload'
-                }
-              }
-            }
-            onChange={(event, editor) => {
-              const data = editor.getData();
-              setCkeditor(data)
-            }}
-          />
+        <Route path='/dashboard'>
+          <ProtectToDashboard />
         </Route>
-        <Route path='/' exact>
-          Home
+        <Route path='/'>
+          <Home />
         </Route>
       </Switch>
     </Router>
-  );
+  )
 }
 
-export default App;
