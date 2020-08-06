@@ -30,7 +30,7 @@ app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
     res.status(200).json(req.decodeToken)
 })
 
-// app.use(middleware.handleError)
+app.use(middleware.handleError)
 
 app.use('/*', (req, res) => {
      res.sendFile(path.join(__dirname,'build','index.html'))
