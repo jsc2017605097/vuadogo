@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
+const path = require('path')
 
 app.use(express.json())
 app.use(middleware.entryPoint)
@@ -32,7 +33,7 @@ app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
 // app.use(middleware.handleError)
 
 app.use('/*', (req, res) => {
-    return res.sendFile('./build/index.html')
+     res.sendFile(path.join(__dirname,'build','index.html')
 })
 
 const PORT = process.env.PORT || 3001
