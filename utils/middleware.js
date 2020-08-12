@@ -27,8 +27,8 @@ const entryPoint = (req, res, next) => {
 
 const checkToken = (req, res, next) => {
     const browserToken = req.get('authorization')
-    if (!browserToken.startsWith('bearer ')) {
-        return res.status(400).end()
+    if (!browserToken || !browserToken.startsWith('bearer ')) {
+        return res.status(400).send('Please login again!')
     }
 
     const token = browserToken.substring(7)

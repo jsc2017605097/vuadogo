@@ -1,10 +1,17 @@
 function initCategory(data) {
     return {
-        type: 'INIT',
+        type: 'INIT_CATEGORY',
         data: data
     }
 }
 
+function addCategory(data) {
+    return {
+        type: 'ADD_CATEGORY',
+        data: data
+    }
+}
 export default {
-    initCategory
+    initCategory,
+    addCategory
 }

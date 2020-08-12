@@ -14,7 +14,7 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -23,17 +23,19 @@ import Chart from '../components/Chart';
 import Deposits from '../components/Deposits';
 import Orders from '../components/Orders';
 import User from '../components/User'
-import CategoryImage from '../images/danhmuc2.png'
-import CreateImage from '../images/create2.png'
 import { useSelector } from 'react-redux'
+import Create from '../components/Create'
+import FormCreateCategory from '../components/FormCreateCategory'
+import FormProduct from '../components/FormProduct'
+import { Route, Switch, useLocation } from 'react-router-dom'
+import LinkIcon from '@material-ui/icons/Link'
+import Product from '../components/Product'
 
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-      </Link>{' '}
+            {'Copyright © JSC'}
+            {' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     toolbar: {
-        paddingRight: 24, // keep right padding when drawer closed
+        paddingRight: 24,
     },
     toolbarIcon: {
         display: 'flex',
@@ -125,17 +127,21 @@ export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const user = useSelector(state => state.user)
+    const createForm = useSelector(state => state.createForm)
 
     const handleDrawerOpen = () => {
         setOpen(true);
     };
+
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
     return (
         <div className={classes.root}>
+            {createForm.showFormCategory && <FormCreateCategory />}
+            {createForm.showFormProduct && <FormProduct />}
             <CssBaseline />
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
@@ -179,36 +185,37 @@ export default function Dashboard() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    <div className='flex-rows margin-bottom-10'>
-                        <div className='flex-rows cursor'>
-                            <img src={CategoryImage} alt='category' />
-                            <span>Add new category</span>
-                        </div>
-                        <div className='flex-rows cursor margin-left-10'>
-                            <img src={CreateImage} alt='create product' />
-                            <span>Create new Product</span>
-                        </div>
+                    <div className='flex-rows-start margin-bottom-20'>
+                        <LinkIcon className='margin-right-10' />{useLocation().pathname}
                     </div>
-                    <Grid container spacing={3}>
-                        {/* Chart */}
-                        <Grid item xs={12} md={8} lg={9}>
-                            <Paper className={fixedHeightPaper}>
-                                <Chart />
-                            </Paper>
-                        </Grid>
-                        {/* Recent Deposits */}
-                        <Grid item xs={12} md={4} lg={3}>
-                            <Paper className={fixedHeightPaper}>
-                                <Deposits />
-                            </Paper>
-                        </Grid>
-                        {/* Recent Orders */}
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <Orders />
-                            </Paper>
-                        </Grid>
-                    </Grid>
+                    <Create />
+                    <Switch>
+                        <Route path='/dashboard/product'>
+                            <Product />
+                        </Route>
+                        <Route path='/dashboard/'>
+                            <Grid container spacing={3}>
+                                {/* Chart */}
+                                <Grid item xs={12} md={8} lg={9}>
+                                    <Paper className={fixedHeightPaper}>
+                                        <Chart />
+                                    </Paper>
+                                </Grid>
+                                {/* Recent Deposits */}
+                                <Grid item xs={12} md={4} lg={3}>
+                                    <Paper className={fixedHeightPaper}>
+                                        <Deposits />
+                                    </Paper>
+                                </Grid>
+                                {/* Recent Orders */}
+                                <Grid item xs={12}>
+                                    <Paper className={classes.paper}>
+                                        <Orders />
+                                    </Paper>
+                                </Grid>
+                            </Grid>
+                        </Route>
+                    </Switch>
                     <Box pt={4}>
                         <Copyright />
                     </Box>

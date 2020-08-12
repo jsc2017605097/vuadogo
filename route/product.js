@@ -2,15 +2,16 @@ const productRouter = require('express').Router()
 const productModel = require('../model/products')
 const userModel = require('../model/user')
 const categoryModel = require('../model/category')
+const middleware = require('../utils/middleware')
 
 productRouter.get('/', async (req, res) => {
-    const products = await productModel.find({}).populate('category').populate('user')
-    console.log(products)
+    const products = await productModel.find({}).populate('category').populate('user',{name:1,_id:0})
     res.status(200).json(products)
 })
 
-productRouter.post('/', async (req, res, next) => {
-    const newProduct = new productModel(req.body)
+productRouter.post('/', middleware.checkToken, async (req, res, next) => {
+    const objectProduct = { ...req.body, user: req.decodeToken.id }
+    const newProduct = new productModel(objectProduct)
     const savedProduct = await newProduct.save()
 
     const user = await userModel.findById(savedProduct.user)

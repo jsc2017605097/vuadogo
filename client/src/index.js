@@ -7,9 +7,15 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import userReducer from './reducers/user'
+import createReducer from './reducers/create-form'
+import categoryReducer from './reducers/category'
+import productReducer from './reducers/product'
 
 const reducer = combineReducers({
-  user: userReducer
+  user: userReducer,
+  createForm: createReducer,
+  category: categoryReducer,
+  product: productReducer
 })
 
 const store = createStore(reducer, composeWithDevTools())

@@ -7,10 +7,12 @@ require('dotenv').config()
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 const path = require('path')
+const fileUpload = require('express-fileupload')
 
 app.use(express.json())
-app.use(middleware.entryPoint)
 app.use(express.static('build'))
+app.use(fileUpload())
+app.use(middleware.entryPoint)
 
 const userRouter = require('./route/user')
 const loginRouter = require('./route/login')
@@ -29,11 +31,20 @@ app.use('/api/product', productRouter)
 app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
     res.status(200).json(req.decodeToken)
 })
+app.post('/upload', (req, res) => {
+    const { upload } = req.files
+    console.log(upload)
+    res.status(200).json({
+        uploaded: true,
+        url: './logo192.png',
+        name: 'logo.png'
+    })
+})
 
 app.use(middleware.handleError)
 
 app.use('/*', (req, res) => {
-     res.sendFile(path.join(__dirname,'build','index.html'))
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 const PORT = process.env.PORT || 3001
