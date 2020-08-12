@@ -33,11 +33,11 @@ app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
 })
 app.post('/upload', (req, res) => {
     const { upload } = req.files
-    console.log(upload)
+    upload.mv(path.join('build', 'images', upload.name))
     res.status(200).json({
         uploaded: true,
-        url: './logo192.png',
-        name: 'logo.png'
+        url: '/images/' + upload.name,
+        name: upload.name
     })
 })
 

@@ -47,7 +47,7 @@ export default function FormProduct() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        const product = { name, img:img.url, price: Number(price), views: Number(views), category, detail: editor }
+        const product = { name, img: img.url, price: Number(price), views: Number(views), category, detail: editor }
         console.log('new product: ', product)
 
         axios({
@@ -140,7 +140,7 @@ export default function FormProduct() {
                                 data={editor}
                                 config={{
                                     ckfinder: {
-                                        uploadUrl: '/ckeditor/upload'
+                                        uploadUrl: '/upload'
                                     }
                                 }}
                                 onChange={(event, editor) => {
