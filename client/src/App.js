@@ -21,16 +21,6 @@ export default function App() {
     })
       .then(res => dispatch(categoryAction.initCategory(res.data)))
       .catch(error => console.log(error.response.data))
-
-    axios({
-      method: 'get',
-      url: '/api/product'
-    }
-    ).then(res => {
-      dispatch({ type: 'INIT_PRODUCT', data: res.data })
-    })
-
-
   }
 
   useEffect(getData, [getData])

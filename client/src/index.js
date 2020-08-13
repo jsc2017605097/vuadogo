@@ -15,7 +15,7 @@ const reducer = combineReducers({
   user: userReducer,
   createForm: createReducer,
   category: categoryReducer,
-  product: productReducer
+  productNeedEdit: productReducer.editProduct
 })
 
 const store = createStore(reducer, composeWithDevTools())

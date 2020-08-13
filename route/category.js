@@ -2,6 +2,8 @@ const categoryRouter = require('express').Router()
 const categoryModel = require('../model/category')
 const middleware = require('../utils/middleware')
 const productModel = require('../model/products')
+const fs = require('fs')
+const path = require('path')
 
 categoryRouter.post('/', middleware.checkToken, async (req, res, next) => {
     const category = new categoryModel(req.body)
@@ -19,6 +21,9 @@ categoryRouter.delete('/:id', middleware.checkToken, async (req, res, next) => {
     const products = req.body
     if (products.length > 0) {
         products.forEach(async product => {
+            fs.unlink(path.join('build' + product.img),()=>{
+                console.log('deleted image')
+            })
             await productModel.findByIdAndRemove(product._id)
         })
     }

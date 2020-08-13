@@ -6,9 +6,9 @@ const productSchema = new mongoose.Schema({
     priceOld: Number,
     img: { type: String, required: true },
     detail: { type: String, required: true },
-    views: { type: Number, default: 0 },
-    created_at: { type: Date, default: Date.now() },
-    updated_at: { type: Date },
+    views: { type: Number},
+    created_at: { type: String},
+    updated_at: { type: String },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'category' }
 })

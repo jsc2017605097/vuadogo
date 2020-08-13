@@ -30,6 +30,7 @@ import FormProduct from '../components/FormProduct'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import LinkIcon from '@material-ui/icons/Link'
 import Product from '../components/Product'
+import EditProduct from '../components/EditProduct';
 
 function Copyright() {
     return (
@@ -142,6 +143,7 @@ export default function Dashboard() {
         <div className={classes.root}>
             {createForm.showFormCategory && <FormCreateCategory />}
             {createForm.showFormProduct && <FormProduct />}
+            {createForm.editProduct && <EditProduct />}
             <CssBaseline />
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>

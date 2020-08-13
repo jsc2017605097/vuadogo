@@ -75,58 +75,55 @@ export default function TableCategory() {
 
     }
 
-    return (
-        <div className='dashboard-product'>
-            <Loading loading={categorys.length === 0} />
-            <div className="category-product">
-                <div className=' background-fff'>
-                    {categorys.map(item =>
-                        <div onClick={showProduct(item)}
-                            className={selectedCategory._id === item._id ? 'item-category cursor padding-20 item-select' : 'item-category cursor padding-20'}>
-                            <span className='bold'>{item.name}</span>
-                            <div className="margin-left-10">
-                                <EditIcon onClick={showEditCategory(item)} />
-                                <DeleteIcon onClick={() => deleteCategory(item)} />
-                            </div>
+    return categorys.length === 0 ? <Loading loading={true} /> : <div className='dashboard-product'>
+        <div className="category-product">
+            <div className=' background-fff'>
+                {categorys.map(item =>
+                    <div onClick={showProduct(item)}
+                        className={selectedCategory._id === item._id ? 'item-category cursor padding-20 item-select' : 'item-category cursor padding-20'}>
+                        <span className='bold'>{item.name}</span>
+                        <div className="margin-left-10">
+                            <EditIcon onClick={showEditCategory(item)} />
+                            <DeleteIcon onClick={() => deleteCategory(item)} />
                         </div>
-                    )}
-                </div>
-                {selectedCategory &&
-                    <div className='margin-left-10 grow-1'>
-                        <TableProduct products={categorys.find(item => item._id === selectedCategory._id).products} />
                     </div>
-                }
-                {!selectedCategory && categorys.length > 0 && <h2 style={{ textAlign: "center", flexGrow: '1' }}>Please choose a category to show data!</h2>}
+                )}
             </div>
-            {showFormEditCategory && <div className='edit-category '>
-                <div className='padding-20 background-fff border-radius' style={{ position: "relative" }}>
-                    <div className='flex-rows border-bottom margin-bottom-20'>
-                        <h2>Edit category</h2>
-                        <Exit handleClick={() => setShowFormEditCategory(false)} />
-                    </div>
-                    <div className="flex-rows " style={{ margin: "20px 0 10px 0" }}>
-                        <TextField id="outlined-basic"
-                            label="Name of category" variant="outlined"
-                            className='margin-right-20'
-                            value={category.name}
-                            onChange={changeCategory}
-                        />
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            startIcon={<SaveIcon />}
-                            onClick={handleSaveCategory}
-                        >
-                            Save
-                        </Button>
-                    </div>
-                    <div>
-                        <Error error={error} />
-                    </div>
+            {selectedCategory &&
+                <div className='margin-left-10 grow-1'>
+                    <TableProduct products={categorys.find(item => item._id === selectedCategory._id).products} />
                 </div>
-            </div>
             }
+            {!selectedCategory && categorys.length > 0 && <h2 style={{ textAlign: "center", flexGrow: '1' }}>Please choose a category to show data!</h2>}
         </div>
-    )
+        {showFormEditCategory && <div className='edit-category '>
+            <div className='padding-20 background-fff border-radius' style={{ position: "relative" }}>
+                <div className='flex-rows border-bottom margin-bottom-20'>
+                    <h2>Edit category</h2>
+                    <Exit handleClick={() => setShowFormEditCategory(false)} />
+                </div>
+                <div className="flex-rows " style={{ margin: "20px 0 10px 0" }}>
+                    <TextField id="outlined-basic"
+                        label="Name of category" variant="outlined"
+                        className='margin-right-20'
+                        value={category.name}
+                        onChange={changeCategory}
+                    />
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        startIcon={<SaveIcon />}
+                        onClick={handleSaveCategory}
+                    >
+                        Save
+                        </Button>
+                </div>
+                <div>
+                    <Error error={error} />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
 }

@@ -8,4 +8,13 @@ function productReducer(state = [], action) {
     }
 }
 
-export default productReducer
+const editProduct = (state = {}, action) => {
+    switch (action.type) {
+        case 'CHOOSE_PRODUCT':
+            return action.data
+        default:
+            return state
+    }
+}
+
+export default { productReducer, editProduct }

@@ -47,7 +47,7 @@ export default function FormProduct() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        const product = { name, img: img.url, price: Number(price), views: Number(views), category, detail: editor }
+        const product = { name, img: img.url, price: Number(price), views: Number(views), category, detail: editor,created_at: new Date() }
         console.log('new product: ', product)
 
         axios({
