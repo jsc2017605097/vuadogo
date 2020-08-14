@@ -8,7 +8,6 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 const path = require('path')
 const fileUpload = require('express-fileupload')
-process.env.TZ = 'Asia/Ho_Chi_Minh'
 
 app.use(express.json())
 app.use(express.static('build'))
