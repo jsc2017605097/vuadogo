@@ -9,6 +9,7 @@ import Authentication from './pages/Authentication'
 import axios from 'axios'
 import categoryAction from './actions/category'
 import { useDispatch } from 'react-redux'
+import DetailProduct from './components/DetailProduct'
 
 const ProtectToDashboard = Authentication(Dashboard)
 export default function App() {
@@ -21,6 +22,13 @@ export default function App() {
     })
       .then(res => dispatch(categoryAction.initCategory(res.data)))
       .catch(error => console.log(error.response.data))
+      
+    axios({
+      method: 'get',
+      url: '/api/product'
+    }).then(res => {
+      dispatch({ type: "INIT_PRODUCT", data: res.data })
+    })
   }
 
   useEffect(getData, [getData])
@@ -33,6 +41,9 @@ export default function App() {
         </Route>
         <Route path='/dashboard'>
           <ProtectToDashboard />
+        </Route>
+        <Route path='/product/:id'>
+          <DetailProduct />
         </Route>
         <Route path='/'>
           <Home />

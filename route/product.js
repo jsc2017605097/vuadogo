@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 
 productRouter.get('/', async (req, res) => {
-    const products = await productModel.find({}).populate('category').populate('user', { name: 1, _id: 0 })
+    const products = await productModel.find({}).populate('category',{name:1}).populate('user', { name: 1, _id: 0 })
     res.status(200).json(products)
 })
 
@@ -28,15 +28,15 @@ productRouter.post('/', middleware.checkToken, async (req, res, next) => {
     res.status(200).json(savedProduct)
 })
 
-productRouter.put('/:id',middleware.checkToken, async (req, res, next) => {
+productRouter.put('/:id', middleware.checkToken, async (req, res, next) => {
     const product = await productModel.findById(req.params.id)
     const updatedProduct = await productModel.findByIdAndUpdate(req.params.id,
-        { ...req.body, user: product.user},
+        { ...req.body, user: product.user },
         { new: true })
     res.status(200).json(updatedProduct)
 })
 
-productRouter.delete('/:id',middleware.checkToken, async (req, res) => {
+productRouter.delete('/:id', middleware.checkToken, async (req, res) => {
     const deletedProduct = await productModel.findByIdAndRemove(req.params.id)
     const category = await categoryModel.findById(deletedProduct.category)
     const user = await userModel.findById(deletedProduct.user)

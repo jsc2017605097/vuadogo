@@ -15,23 +15,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SimpleSelect({category,categorys,setCategory}) {
+export default function SimpleSelect({ category, categorys, setCategory }) {
     const classes = useStyles();
 
     const handleChange = (event) => {
+        console.log(event.target.value)
         setCategory(event.target.value);
     };
 
     return (
-        <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+        <FormControl variant="filled" className={classes.formControl}>
+            <InputLabel id="demo-simple-select-filled-label">Category</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="demo-simple-select-filled-label"
+                id="demo-simple-select-filled"
                 value={category}
                 onChange={handleChange}
             >
-                {categorys.map(item=><MenuItem value={item._id}>{item.name}</MenuItem> )}
+                {categorys.map(item => <MenuItem value={item._id}>{item.name}</MenuItem>)}
             </Select>
         </FormControl>
     )

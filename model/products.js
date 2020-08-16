@@ -5,9 +5,10 @@ const productSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     priceOld: Number,
     img: { type: String, required: true },
+    describtion: { type: String },
     detail: { type: String, required: true },
-    views: { type: Number},
-    created_at: { type: String},
+    views: { type: Number },
+    created_at: { type: String },
     updated_at: { type: String },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'category' }

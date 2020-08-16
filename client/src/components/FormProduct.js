@@ -44,12 +44,11 @@ export default function FormProduct() {
     const [editor, setEditor] = useState('Description detail new product...')
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+    const [describtion,setDescribtion] = useState('')
 
     function handleSubmit(event) {
         event.preventDefault()
-        const product = { name, img: img.url, price: Number(price), views: Number(views), category, detail: editor,created_at: new Date() }
-        console.log('new product: ', product)
-
+        const product = { name, describtion, img: img.url, price: Number(price), views: Number(views), category, detail: editor, created_at: new Date() }
         axios({
             method: 'post',
             url: '/api/product',
@@ -117,6 +116,9 @@ export default function FormProduct() {
                         />
                         <TextField id="filled-basic" label="Views" variant="filled"
                             value={views} onChange={(event) => setViews(event.target.value)}
+                        />
+                         <TextField id="filled-basic" label="Describtions" variant="filled"
+                            value={describtion} onChange={(event) => setDescribtion(event.target.value)}
                         />
                         <div>
                             <input

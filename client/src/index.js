@@ -9,13 +9,14 @@ import { Provider } from 'react-redux'
 import userReducer from './reducers/user'
 import createReducer from './reducers/create-form'
 import categoryReducer from './reducers/category'
-import productReducer from './reducers/product'
+import productReducers from './reducers/product'
 
 const reducer = combineReducers({
   user: userReducer,
   createForm: createReducer,
   category: categoryReducer,
-  productNeedEdit: productReducer.editProduct
+  product:productReducers.productReducer,
+  productNeedEdit: productReducers.editProduct
 })
 
 const store = createStore(reducer, composeWithDevTools())

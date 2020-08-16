@@ -1,13 +1,50 @@
-import React from 'react'
-import LinearProgress from '@material-ui/core/LinearProgress'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-export default function Loading({loading}) {
-    if (loading) {
-        return <div className="margin-top-20">
-            <LinearProgress />
-            {/* <div style={{ margin: "15px 0px 10px 0px" }}></div>
-            <LinearProgress color="secondary" /> */}
-        </div>
+const useStyles = makeStyles({
+    root: {
+        width: '100%'
+    },
+});
+
+export default function LinearBuffer({ loading }) {
+    const classes = useStyles();
+    const [progress, setProgress] = React.useState(0);
+    const [buffer, setBuffer] = React.useState(10);
+
+    const progressRef = React.useRef(() => { });
+    React.useEffect(() => {
+        progressRef.current = () => {
+            if (progress > 100) {
+                setProgress(0);
+                setBuffer(10);
+            } else {
+                const diff = Math.random() * 10;
+                const diff2 = Math.random() * 10;
+                setProgress(progress + diff);
+                setBuffer(progress + diff + diff2);
+            }
+        };
+    });
+
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            progressRef.current();
+        }, 500);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
+    if (!loading) {
+        return null
     }
-    return null
+    return (
+        <div className='flex-rows' style={{height:'90vh',margin:'0 !important'}}>
+            <div className={classes.root}>
+                <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            </div>
+        </div>
+    );
 }

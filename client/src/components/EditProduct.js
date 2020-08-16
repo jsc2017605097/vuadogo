@@ -19,6 +19,7 @@ export default function EditProduct() {
     const [img, setImg] = useState(product.img)
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+    const [describtion, setDescribtion] = useState(product.describtion)
 
     function exitFormProduct() {
         dispatch({ type: 'HIDDEN_FORM_EDIT_PRODUCT' })
@@ -30,7 +31,7 @@ export default function EditProduct() {
         setError('')
         setSuccess('')
         const objectProduct = {
-            ...product, name, views, price, detail: editor, img,updated_at:new Date()
+            ...product, name, describtion, views, price, detail: editor, img, updated_at: new Date()
         }
         axios({
             method: 'put',
@@ -84,6 +85,10 @@ export default function EditProduct() {
                         <TextField id="filled-basic" label="Views" variant="filled"
                             style={{ marginLeft: '20px' }}
                             value={views} onChange={(event) => setViews(event.target.value)}
+                        />
+                        <TextField id="filled-basic" label="Describtion" variant="filled"
+                            style={{ marginLeft: '20px' }}
+                            value={describtion} onChange={(event) => setDescribtion(event.target.value)}
                         />
                         <div style={{ marginTop: "20px", marginBottom: "20px", display: "flex", alignItems: 'center' }} >
                             <input
