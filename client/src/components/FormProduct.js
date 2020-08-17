@@ -9,8 +9,6 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import Select from './Select'
 import axios from 'axios'
-import Error from './Error'
-import Success from './Sucess'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,8 +40,6 @@ export default function FormProduct() {
     const [views, setViews] = useState(0)
     const [category, setCategory] = useState('')
     const [editor, setEditor] = useState('Description detail new product...')
-    const [error, setError] = useState('')
-    const [success, setSuccess] = useState('')
     const [describtion,setDescribtion] = useState('')
 
     function handleSubmit(event) {
@@ -59,12 +55,10 @@ export default function FormProduct() {
         })
             .then(res => {
                 dispatch({ type: 'ADD_PRODUCT', data: res.data })
-                setError('')
-                setSuccess(`Create new product success: ${name}`)
+                window.alert(`Create new product success: ${name}`)
             })
             .catch(error => {
-                setSuccess('')
-                setError(error.response.data)
+                window.alert(error.response.data)
             })
 
     }
@@ -155,8 +149,6 @@ export default function FormProduct() {
                         <Button type='submit' variant="contained" color="primary">
                             Create new product
                         </Button>
-                        <Error error={error} />
-                        <Success alert={success} />
                     </form>
                 </div>
 

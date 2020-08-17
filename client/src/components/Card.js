@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlignItemsList(props) {
     const classes = useStyles();
-    console.log(props)
     return (
         <List className={classes.root}>
             <ListItem alignItems="flex-start">
