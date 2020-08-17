@@ -3,10 +3,15 @@ import Grid from '@material-ui/core/Grid'
 import Bg1 from '../images/bg1.jpg'
 import Post from '../components/Post'
 import Fillter from '../components/Fillter'
+import { Helmet } from 'react-helmet'
 
 export default function Home() {
     return (
         <div>
+            <Helmet>
+                <title>JSC</title>
+                <meta name="describtion" content="jsc" />
+            </Helmet>
             <Grid container >
                 <Grid item xs={12} sm={12} lg={5} xl={5}>
                     <div

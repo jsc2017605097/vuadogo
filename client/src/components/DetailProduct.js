@@ -14,8 +14,7 @@ export default function DetailProduct() {
         <Helmet>
             <title>{product.name}</title>
             <meta name="describtion" content={product.describtion} />
-            <meta property="fb:app_id" content="1234567890" />
-            <meta property="og:url" content="https://calm-oasis-38367.herokuapp.com/" />
+            <meta property="og:url" content={"https://calm-oasis-38367.herokuapp.com/product/" + product._id} />
             <meta property="og:title" content={product.name} />
             <meta property="og:image" content={"https://calm-oasis-38367.herokuapp.com" + product.img} />
             <meta property="og:description" content={product.describtion} />
