@@ -41,10 +41,8 @@ export default function LinearBuffer({ loading }) {
         return null
     }
     return (
-        <div className='flex-rows' style={{height:'90vh',margin:'0 !important'}}>
             <div className={classes.root}>
                 <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
             </div>
-        </div>
     );
 }

@@ -3,13 +3,13 @@ import Grid from '@material-ui/core/Grid'
 import Bg1 from '../images/bg1.jpg'
 import TabMenu from '../components/TapMenu'
 import Post from '../components/Post'
-import Categories from '../components/Categories'
 import Contact from '../components/Contact'
+import Fillter from '../components/Fillter'
 
 export default function Home() {
     const [showPost, setShowPost] = useState(true)
-    const [showCategories, setShowCategories] = useState(false)
     const [showContact, setShowContact] = useState(false)
+
     return (
         <div>
             <Grid container >
@@ -25,11 +25,11 @@ export default function Home() {
                         Column1
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={12} lg={7} xl={7}>
-                    <div style={{ height: '100vh', padding: "20px", background: '#F0F2F5' }}>
-                        <TabMenu setShowCategories={setShowCategories} setShowPost={setShowPost} setShowContact={setShowContact} />
+                <Grid item xs={12} sm={12} lg={7} xl={7} style={{ overflow: 'auto', background: '#F0F2F5' }}>
+                    <div style={{ height: '100vh', padding: "20px" }}>
+                        <TabMenu setShowPost={setShowPost} setShowContact={setShowContact} />
+                        {showPost && <Fillter />}
                         {showPost && <Post />}
-                        {showCategories && <Categories />}
                         {showContact && <Contact />}
                     </div>
                 </Grid>

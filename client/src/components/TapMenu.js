@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function CenteredTabs({ setShowPost, setShowCategories, setShowContact }) {
+export default function CenteredTabs({ setShowPost, setShowContact }) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -19,7 +19,7 @@ export default function CenteredTabs({ setShowPost, setShowCategories, setShowCo
     };
 
     return (
-        <Paper className={classes.root} style={{marginBottom:'20px'}}>
+        <Paper square className={classes.root}>
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -27,9 +27,8 @@ export default function CenteredTabs({ setShowPost, setShowCategories, setShowCo
                 textColor="primary"
                 centered
             >
-                <Tab label="POST" onClick={() => { setShowPost(true); setShowCategories(false); setShowContact(false) }} />
-                <Tab label="CATEGORIES" onClick={() => { setShowPost(false); setShowCategories(true); setShowContact(false) }} />
-                <Tab label="CONTACTS" onClick={() => { setShowPost(false); setShowCategories(false); setShowContact(true) }} />
+                <Tab label="POST" onClick={() => { setShowPost(true); setShowContact(false) }} />
+                <Tab label="CONTACTS" onClick={() => { setShowPost(false); setShowContact(true) }} />
             </Tabs>
         </Paper>
     );

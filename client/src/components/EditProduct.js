@@ -6,9 +6,6 @@ import TextField from '@material-ui/core/TextField'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import axios from 'axios'
-import Success from './Sucess'
-import Error from './Error'
-
 export default function EditProduct() {
     const dispatch = useDispatch()
     const product = useSelector(state => state.productNeedEdit)
@@ -17,8 +14,6 @@ export default function EditProduct() {
     const [price, setPrice] = useState(product.price)
     const [editor, setEditor] = useState(product.detail)
     const [img, setImg] = useState(product.img)
-    const [error, setError] = useState('')
-    const [success, setSuccess] = useState('')
     const [describtion, setDescribtion] = useState(product.describtion)
 
     function exitFormProduct() {
@@ -28,8 +23,6 @@ export default function EditProduct() {
     function handleSubmit(event) {
         event.preventDefault()
         console.log('submit...')
-        setError('')
-        setSuccess('')
         const objectProduct = {
             ...product, name, describtion, views, price, detail: editor, img, updated_at: new Date()
         }
@@ -41,10 +34,10 @@ export default function EditProduct() {
                 "Authorization": window.localStorage.getItem('token')
             }
         }).then(res => {
-            setSuccess('Update product ' + res.data.name + ' success.')
+            window.alert('Update product ' + res.data.name + ' success.')
             dispatch({ type: "UPDATE_PRODUCT", data: res.data })
         }).catch(error => {
-            setError(error.response.data)
+            window.alert(error.response.data)
         })
     }
 
@@ -118,8 +111,8 @@ export default function EditProduct() {
                         <Button type='submit' variant="contained" color="primary" style={{ marginTop: "20px" }}>
                             Upadte product
                         </Button>
-                        <Error error={error} />
-                        <Success alert={success} />
+                        {/* <Error error={error} />
+                        <Success alert={success} /> */}
                     </form>
                 </div>
 

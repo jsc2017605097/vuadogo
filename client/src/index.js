@@ -10,13 +10,15 @@ import userReducer from './reducers/user'
 import createReducer from './reducers/create-form'
 import categoryReducer from './reducers/category'
 import productReducers from './reducers/product'
+import filter from './reducers/filter'
 
 const reducer = combineReducers({
   user: userReducer,
   createForm: createReducer,
   category: categoryReducer,
-  product:productReducers.productReducer,
-  productNeedEdit: productReducers.editProduct
+  product: productReducers.productReducer,
+  productNeedEdit: productReducers.editProduct,
+  filter: filter
 })
 
 const store = createStore(reducer, composeWithDevTools())

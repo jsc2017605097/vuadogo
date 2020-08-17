@@ -17,7 +17,7 @@ export default function Create() {
     return (
         <div className='flex-rows'>
             <div style={{ display: 'inline-block' }}>
-                <div className='flex-rows margin-bottom-20 padding-10 border-radius' style={{ background: "#F0F2F5" }}>
+                <div className='flex-rows margin-bottom-20 padding-10 border-radius' >
                     <div className='flex-rows cursor background-fff padding-10 border-radius' style={{margin:"0"}} onClick={AddCategory} >
                         <img src={CategoryImage} alt='category' />
                         <span>Add new category</span>
