@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loading from './Loading'
 import Container from '@material-ui/core/Container'
+import { Helmet } from 'react-helmet'
 
 export default function DetailProduct() {
     const params = useParams()
@@ -10,12 +11,12 @@ export default function DetailProduct() {
     const product = useSelector(state => {
         return state.product.find(p => p._id === id)
     })
-    if(product){
-        document.title=product.name
-    }
     return product === undefined ? <div style={{ height: '100vh', width: '100%', marginLeft: "0" }} className='flex-rows'><Loading loading={true} /></div> : <div style={{ background: "#F0F2F5" }}>
+        <Helmet>
+            <title>{product.name}</title>
+        </Helmet>
         <div className='flex-rows ' style={{ background: "#FFFFFF", margin: "0", padding: "30px" }}>
-            <img  src={product.img} alt={product.img} width="20%" className="border-radius img" />
+            <img src={product.img} alt={product.img} width="20%" className="border-radius img" />
         </div>
         <Container maxWidth="lg" style={{ marginTop: "50px", marginBottom: "50px" }}>
             <div style={{ background: "#FFFFFF", padding: "30px", borderRadius: "10px" }}>
