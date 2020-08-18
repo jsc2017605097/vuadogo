@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loading from './Loading'
 import Container from '@material-ui/core/Container'
-import { Helmet } from 'react-helmet'
+
 export default function DetailProduct() {
     const params = useParams()
     const id = params.id
@@ -11,16 +11,8 @@ export default function DetailProduct() {
         return state.product.find(p => p._id === id)
     })
     return product === undefined ? <div style={{ height: '100vh', width: '100%', marginLeft: "0" }} className='flex-rows'><Loading loading={true} /></div> : <div style={{ background: "#F0F2F5" }}>
-        <Helmet>
-            <title>{product.name}</title>
-            <meta name="describtion" content={product.describtion} />
-            <meta property="og:url" content={"https://calm-oasis-38367.herokuapp.com/product/" + product._id} />
-            <meta property="og:title" content={product.name} />
-            <meta property="og:image" content={"https://calm-oasis-38367.herokuapp.com" + product.img} />
-            <meta property="og:description" content={product.describtion} />
-        </Helmet>
         <div className='flex-rows ' style={{ background: "#FFFFFF", margin: "0", padding: "30px" }}>
-            <img src={product.img} alt={product.img} width="20%" className="border-radius" />
+            <img className='img' src={product.img} alt={product.img} width="20%" className="border-radius" />
         </div>
         <Container maxWidth="lg" style={{ marginTop: "50px", marginBottom: "50px" }}>
             <div style={{ background: "#FFFFFF", padding: "30px", borderRadius: "10px" }}>

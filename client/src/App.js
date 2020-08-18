@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './css/Dashboard.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
 
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
@@ -10,10 +10,12 @@ import axios from 'axios'
 import categoryAction from './actions/category'
 import { useDispatch } from 'react-redux'
 import DetailProduct from './components/DetailProduct'
+import { Helmet } from 'react-helmet'
 
 const ProtectToDashboard = Authentication(Dashboard)
 export default function App() {
   const dispatch = useDispatch()
+  const params = useParams()
 
   function getData() {
     axios({
@@ -22,7 +24,7 @@ export default function App() {
     })
       .then(res => dispatch(categoryAction.initCategory(res.data)))
       .catch(error => console.log(error.response.data))
-      
+
     axios({
       method: 'get',
       url: '/api/product'
@@ -43,6 +45,13 @@ export default function App() {
           <ProtectToDashboard />
         </Route>
         <Route path='/product/:id'>
+          <Helmet>
+            <meta name="describtion" content="Chia sẻ những kiến thức về core JS, cùng nhau đàm đạo về JS so với những ngôn ngữ lập trình TOP hiện nay..." />
+            <meta property="og:url" content={"https://calm-oasis-38367.herokuapp.com/product/" + params.id} />
+            <meta property="og:title" content="Bí kíp chính tông JavaScript" />
+            <meta property="og:image" content={"https://calm-oasis-38367.herokuapp.com/js.jpg"} />
+            <meta property="og:description" content="Chia sẻ những kiến thức về core JS, cùng nhau đàm đạo về JS so với những ngôn ngữ lập trình TOP hiện nay..." />
+          </Helmet>
           <DetailProduct />
         </Route>
         <Route path='/'>
