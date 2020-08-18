@@ -10,6 +10,9 @@ export default function DetailProduct() {
     const product = useSelector(state => {
         return state.product.find(p => p._id === id)
     })
+    if(product){
+        document.title=product.name
+    }
     return product === undefined ? <div style={{ height: '100vh', width: '100%', marginLeft: "0" }} className='flex-rows'><Loading loading={true} /></div> : <div style={{ background: "#F0F2F5" }}>
         <div className='flex-rows ' style={{ background: "#FFFFFF", margin: "0", padding: "30px" }}>
             <img  src={product.img} alt={product.img} width="20%" className="border-radius img" />
