@@ -1,0 +1,12 @@
+POST http://localhost:3001/api/product
+Content-Type: application/json
+
+{
+    "name": "Trị Mụn SCFF12",
+    "price": 120000,
+    "priceOld": 400000,
+    "img": "/anh.png",
+    "detail": "detail",
+    "user":"5f2905ebc31c451d807ce489" ,
+    "category":"5f29818e139afa20241cd82e"
+}

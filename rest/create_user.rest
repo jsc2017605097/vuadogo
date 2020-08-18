@@ -1,8 +1,9 @@
 POST http://localhost:3001/api/user
 Content-Type: application/json
+Authorization: bearer cuong
 
 {
-    "username":"vulananh",
-    "password":"123",
-    "name":"Nguyễn Đỗ Cường"
+    "username":"lebaohan",
+    "password":"123456",
+    "name":"Bảo Hân"
 }

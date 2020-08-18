@@ -75,13 +75,13 @@ export default function TableCategory() {
 
     }
 
-    return categorys.length === 0 ? <Loading loading={true} /> : <div className=''>
-        <div className="">
-            <div className='flex-rows background-fff' style={{fontSize:'14px'}}>
+    return categorys.length === 0 ? <Loading loading={true} /> : <div className='dashboard-product'>
+        <div className="category-product">
+            <div className=' background-fff'>
                 {categorys.map(item =>
-                    <div key={item._id} onClick={showProduct(item)}
-                        className={selectedCategory._id === item._id ? 'flex-rows cursor padding-20 item-select' : 'flex-rows cursor padding-20'}>
-                        <span>{item.name}</span>
+                    <div onClick={showProduct(item)}
+                        className={selectedCategory._id === item._id ? 'item-category cursor padding-20 item-select' : 'item-category cursor padding-20'}>
+                        <span className='bold'>{item.name}</span>
                         <div className="margin-left-10">
                             <EditIcon onClick={showEditCategory(item)} />
                             <DeleteIcon onClick={() => deleteCategory(item)} />
