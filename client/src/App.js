@@ -45,7 +45,7 @@ export default function App() {
         <Route path='/product/:id'>
           <Helmet>
             <meta name="describtion" content="Chia sẻ những kiến thức về core JS, cùng nhau đàm đạo về JS so với những ngôn ngữ lập trình TOP hiện nay..." />
-            <meta property="og:url" content={"https://calm-oasis-38367.herokuapp.com/"} />
+            <meta property="og:url" content={"https://calm-oasis-38367.herokuapp.com/5f3a682a47bf990004bfcacf"} />
             <meta property="og:title" content="Bí kíp chính tông JavaScript" />
             <meta property="og:image" content={"https://calm-oasis-38367.herokuapp.com/js.jpg"} />
             <meta property="og:description" content="Chia sẻ những kiến thức về core JS, cùng nhau đàm đạo về JS so với những ngôn ngữ lập trình TOP hiện nay..." />
