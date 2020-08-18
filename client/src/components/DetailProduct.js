@@ -28,7 +28,7 @@ export default function DetailProduct() {
                 <meta name="og:image" content="https://calm-oasis-38367.herokuapp.com/js.jpg" />
             </Helmet>
             <div className='flex-rows ' style={{ background: "#FFFFFF", margin: "0", padding: "30px" }}>
-                <img src={product.img} alt={product.img} width="20%" className="border-radius img" />
+                <img src={product.img} alt={product.img} width="60%" className="border-radius img" />
             </div>
             <Container maxWidth="lg" style={{ marginTop: "50px", marginBottom: "50px" }}>
                 <div style={{ background: "#FFFFFF", padding: "30px", borderRadius: "10px" }}>
