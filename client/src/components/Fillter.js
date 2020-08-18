@@ -24,8 +24,8 @@ export default function BasicTextFields() {
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Search" onChange={(event) => dispatch({ type: "FILTER_NAME", data: event.target.value })} />
-            <FormControl className={classes.formControl}>
+            <TextField className='img' id="standard-basic" label="Search" onChange={(event) => dispatch({ type: "FILTER_NAME", data: event.target.value })} />
+            <FormControl className={classes.formControl + ' img'}>
                 <InputLabel id="demo-simple-select-label">Category</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
