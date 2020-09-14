@@ -7,11 +7,14 @@ const fs = require('fs')
 const path = require('path')
 
 productRouter.get('/', async (req, res) => {
-    const products = await productModel.find({}).populate('category',{name:1}).populate('user', { name: 1, _id: 0 })
+    const products = await productModel.find({})
     res.status(200).json(products)
 })
 
 productRouter.post('/', middleware.checkToken, async (req, res, next) => {
+    if (req.body.img.length === 0) {
+        return res.status(400).send("Ảnh không được để trống!")
+    }
     const objectProduct = { ...req.body, user: req.decodeToken.id }
     const newProduct = new productModel(objectProduct)
     const savedProduct = await newProduct.save()

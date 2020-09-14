@@ -12,7 +12,6 @@ const fileUpload = require('express-fileupload')
 app.use(express.json())
 app.use(express.static('build'))
 app.use(fileUpload())
-app.use(middleware.entryPoint)
 
 const userRouter = require('./route/user')
 const loginRouter = require('./route/login')
@@ -33,14 +32,21 @@ app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
 })
 app.post('/upload', (req, res) => {
     const { upload } = req.files
-    upload.mv(path.join(__dirname,'build', 'images', upload.name))
+    upload.mv(path.join(__dirname, 'build', 'images', upload.name))
     res.status(200).json({
         uploaded: true,
         url: '/images/' + upload.name,
         name: upload.name
     })
 })
-
+app.post('/api/uploads', middleware.checkToken, (req, res) => {
+    const urlFiles = []
+    for (var key in req.files) {
+        req.files[key].mv(path.join(__dirname,'build','images',req.files[key].name))
+        urlFiles.push("/images/" + req.files[key].name)
+    }
+    res.status(200).json(urlFiles)
+})
 app.use(middleware.handleError)
 
 app.use('/*', (req, res) => {

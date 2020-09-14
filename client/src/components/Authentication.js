@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import userAction from '../actions/user'
 
-export default function Authentication(PageNeedAuthentication) {
-    return function Page() {
+function Authentication(Page) {
+    return function ComponentFunction() {
+        const history = useHistory()
         const token = window.localStorage.getItem('token')
-        const [authorization, setAuthorization] = useState('AUTHEN')
+        const [loading, setLoading] = useState(true)
         const dispatch = useDispatch()
 
         useEffect(() => {
-
-            axios.get('/api/checkToken', { headers: { Authorization: token } })
+            if (!token) {
+                history.push('/login')
+            }
+            axios({
+                method: 'get',
+                url: '/api/checktoken',
+                headers: {
+                    "Authorization": token
+                }
+            })
                 .then(res => {
+                    setLoading(false)
                     dispatch(userAction.checkTokenSuccessly(res.data))
-                    setAuthorization('PAGE')
                 })
                 .catch(error => {
                     dispatch(userAction.checkTokenError)
-                    setAuthorization('LOGIN')
+                    history.push('/login')
                 })
-        }, [dispatch, token])
+        }, [history, token,dispatch])
 
-        const ComponentShow = () => {
-            switch (authorization) {
-                case 'LOGIN':
-                    return <Redirect to='/login' />
-                case 'PAGE':
-                    return <PageNeedAuthentication />
-                default:
-                    return <div>Loading...</div>
-            }
-        }
-
-        return <ComponentShow />
+        return loading ? null : <Page />
     }
 }
+
+export default Authentication

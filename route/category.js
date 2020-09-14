@@ -17,13 +17,16 @@ categoryRouter.get('/', async (req, res, next) => {
 })
 
 categoryRouter.delete('/:id', middleware.checkToken, async (req, res, next) => {
-    const deletedCategory = await categoryModel.findByIdAndRemove(req.params.id)
-    const products = req.body
+    const deletedCategory = await categoryModel.findByIdAndRemove(req.params.id).populate("products")
+    const products = deletedCategory.products
     if (products.length > 0) {
         products.forEach(async product => {
-            fs.unlink(path.join('build' + product.img),()=>{
-                console.log('deleted image')
+            product.img.forEach(img => {
+                fs.unlink(path.join('build') + img, () => {
+                    console.log('deleted image')
+                })
             })
+
             await productModel.findByIdAndRemove(product._id)
         })
     }
