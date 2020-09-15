@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import './css/index.css'
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
@@ -12,27 +12,35 @@ import { useDispatch } from 'react-redux'
 const ProtectToDashboard = Authentication(Dashboard)
 export default function App() {
   const dispatch = useDispatch()
-  function getData() {
-    axios({
-      method: 'get',
-      url: '/api/category'
-    })
-      .then(res => dispatch(categoryAction.initCategory(res.data)))
-      .catch(error => console.log(error.response.data))
 
-    axios({
-      method: 'get',
-      url: '/api/product'
-    }).then(res => {
-      dispatch({ type: "INIT_PRODUCT", data: res.data })
-      dispatch({ type: "DONE" })
-    })
-  }
+  useEffect(() => {
+    async function getData() {
+      axios({
+        method: 'get',
+        url: '/api/category'
+      })
+        .then(res => dispatch(categoryAction.initCategory(res.data)))
+        .catch(error => console.log(error.response.data))
 
-  useEffect(getData, [getData])
+      const data = await axios({
+        method: 'get',
+        url: '/api/product'
+      })
+      dispatch({ type: "INIT_PRODUCT", data: data.data })
+      dispatch({ type: "DONE", data: data.data })
+      // axios({
+      //   method: 'get',
+      //   url: '/api/product'
+      // }).then(res => {
+      //   dispatch({ type: "INIT_PRODUCT", data: res.data })
+      //   dispatch({ type: "DONE" })
+      // })
+    }
+    getData()
+  }, [dispatch])
 
   return (
-    <Router>
+    <React.Fragment>
       <Switch>
         <Route path='/login'>
           <Login />
@@ -44,7 +52,7 @@ export default function App() {
           <Home />
         </Route>
       </Switch>
-    </Router>
+    </React.Fragment>
   )
 }
 

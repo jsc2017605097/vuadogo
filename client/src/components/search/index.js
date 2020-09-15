@@ -8,7 +8,7 @@ const Example = (props) => {
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText >Tìm kiếm</InputGroupText>
                 </InputGroupAddon>
-                <Input onChange={event => props.setSearch(event.target.value)} />
+                <Input onChange={event => props.setSearch(event.target.value)} placeholder="Tên sản phẩm" />
             </InputGroup>
         </div>
     );

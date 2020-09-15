@@ -22,10 +22,6 @@ function categoryReducer(state = [], action) {
                 }
                 return action.data
             })
-        case 'DELETE_CATEGORY':
-            return state.filter(category => {
-                return category._id !== action.data
-            })
         case 'DELETE_PRODUCT':
             return state.map(category => {
                 if (category._id === action.data.category) {

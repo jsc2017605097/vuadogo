@@ -12,13 +12,14 @@ categoryRouter.post('/', middleware.checkToken, async (req, res, next) => {
 })
 
 categoryRouter.get('/', async (req, res, next) => {
-    const categories = await categoryModel.find({}).populate('products')
+    const categories = await categoryModel.find({})
     res.status(200).json(categories)
 })
 
 categoryRouter.delete('/:id', middleware.checkToken, async (req, res, next) => {
-    const deletedCategory = await categoryModel.findByIdAndRemove(req.params.id).populate("products")
-    const products = deletedCategory.products
+    const deletedCategory = await categoryModel.findByIdAndRemove(req.params.id)
+    const products = await productModel.find({ category: deletedCategory._id })
+
     if (products.length > 0) {
         products.forEach(async product => {
             product.img.forEach(img => {
@@ -34,7 +35,7 @@ categoryRouter.delete('/:id', middleware.checkToken, async (req, res, next) => {
 })
 
 categoryRouter.put('/:id', middleware.checkToken, async (req, res) => {
-    const category = await categoryModel.findById(req.params.id).populate('products')
+    const category = await categoryModel.findById(req.params.id)
     category.name = req.body.name
     const updatedCategory = await category.save()
     res.status(200).json(updatedCategory)

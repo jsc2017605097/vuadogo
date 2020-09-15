@@ -8,7 +8,7 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 const path = require('path')
 const fileUpload = require('express-fileupload')
-
+const fs = require('fs')
 app.use(express.json())
 app.use(express.static('build'))
 app.use(fileUpload())
@@ -42,10 +42,19 @@ app.post('/upload', (req, res) => {
 app.post('/api/uploads', middleware.checkToken, (req, res) => {
     const urlFiles = []
     for (var key in req.files) {
-        req.files[key].mv(path.join(__dirname,'build','images',req.files[key].name))
+        req.files[key].mv(path.join(__dirname, 'build', 'images', req.files[key].name))
         urlFiles.push("/images/" + req.files[key].name)
     }
     res.status(200).json(urlFiles)
+})
+app.post('/api/deleteimage', middleware.checkToken, (req, res) => {
+    req.body.img.forEach(img => {
+        fs.unlink('./build' + img, () => {
+            console.log("deleted img!")
+        })
+    })
+
+    res.status(200).json({ link: req.body.link })
 })
 app.use(middleware.handleError)
 

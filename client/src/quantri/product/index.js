@@ -12,7 +12,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import Loading from '../../components/loading'
 import axios from 'axios'
 import Alert from '../../components/alert_error';
-import DialogEditProduct from '../dialog_edit_product'
+import {Link} from 'react-router-dom'
+import ButtonEdit from '../../components/button_edit'
 
 const useStyles = makeStyles({
     table: {
@@ -23,15 +24,9 @@ const useStyles = makeStyles({
 
 export default function SimpleTable(props) {
     const classes = useStyles();
-    let products = useSelector(state => state.product)
     const checkGetData = useSelector(state => state.checkGetProduct)
     const dispatch = useDispatch()
-    let productsToShow = products
-    if (props.selectedCategory) {
-        productsToShow = products.filter(product => {
-            return product.category === props.selectedCategory
-        })
-    }
+    let productsToShow = props.products
 
     if (props.search) {
         productsToShow = productsToShow.filter(product => {
@@ -50,7 +45,6 @@ export default function SimpleTable(props) {
                     }
                 }).then(res => {
                     dispatch({ type: "DELETE_PRODUCT_AT_PRODUCT", data: res.data._id })
-                    dispatch({ type: "DELETE_PRODUCT", data: res.data })
                 })
             }
         }
@@ -60,6 +54,7 @@ export default function SimpleTable(props) {
     }
     return (
         <div>
+            <div style={{ padding: '10px', background: "#3f51b5", color: "#FFFFFF" }}>Danh sách sản phẩm</div>
             { productsToShow.length > 0 ?
                 <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
@@ -81,8 +76,8 @@ export default function SimpleTable(props) {
                                         {product.name}
                                     </TableCell>
                                     <TableCell align="left"><img alt="img" src={product.img[0]} height="100px" /></TableCell>
-                                    <TableCell align="left">{product.price}</TableCell>
-                                    <TableCell align="left"><DialogEditProduct product={product} /></TableCell>
+                                    <TableCell align="left">{new Intl.NumberFormat().format(product.price)} VNĐ</TableCell>
+                                    <TableCell align="left"><Link to={'/dashboard/product/' + product._id}><ButtonEdit /></Link></TableCell>
                                     <TableCell align="left"><ButtonDelete onClick={deleteProduct(product._id, product.name)} /></TableCell>
                                 </TableRow>
                             ))}

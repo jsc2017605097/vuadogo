@@ -64,14 +64,12 @@ export default function FullScreenDialog() {
                 "Authorization": window.localStorage.getItem("token")
             }
         }).then(res => {
-            console.log(res.data)
             setImages([])
             setName('')
             setDescribtion('')
             setPrice('')
             setCategory('')
             setContent('')
-            dispatch({ type: "ADD_PRODUCT", data: res.data })
             dispatch({ type: "ADD_PRODUCT_TO_PRODUCT", data: res.data })
             window.alert("Thêm mới thành công!")
         }).catch(error => window.alert(error.response.data))
