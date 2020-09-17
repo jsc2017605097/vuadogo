@@ -23,3 +23,6 @@
 button{
     outline:none !important;
 }
+body,html,.MuiButton-root,.MuiTableCell-root,.MuiChip-root,.MuiTypography-h5,.MuiTypography-body2,.MuiInputBase-root,input,label{
+    font-family: 'Mulish', sans-serif !important;
+}
