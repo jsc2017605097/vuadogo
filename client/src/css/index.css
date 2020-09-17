@@ -23,6 +23,22 @@
 button{
     outline:none !important;
 }
-body,html,.MuiButton-root,.MuiTableCell-root,.MuiChip-root,.MuiTypography-h5,.MuiTypography-body2,.MuiInputBase-root,input,label{
+
+body,html,.MuiButton-root,.MuiTableCell-root,.MuiChip-root,.MuiTypography-h5,.MuiTypography-body2,.MuiInputBase-root,input,label,.MuiAlert-root{
     font-family: 'Mulish', sans-serif !important;
+}
+.paper{
+    background: rgb(63, 81, 181) !important;
+    color: #FFFFFF !important;
+    margin: 20px 0 0 0 !important;
+}
+.jumbotron{
+    margin-bottom: 0 !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+@media only screen and (max-width: 414px){
+    .maykhach_danhmuc{
+        display: block !important;
+    }
 }
