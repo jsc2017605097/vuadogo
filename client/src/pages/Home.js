@@ -5,6 +5,10 @@ import GioiThieu from '../maykhach/gioithieu'
 import Category from '../maykhach/category'
 import Product from '../maykhach/product'
 import Feedback from '../maykhach/feedback'
+import Footer from '../maykhach/footer'
+import Sidebar from '../maykhach/sidebar'
+import { Switch, Route } from 'react-router-dom'
+import GioHang from '../maykhach/giohang'
 
 export default function Home() {
     return (
@@ -13,10 +17,21 @@ export default function Home() {
             <Slide />
             <GioiThieu />
             <Category />
-            <Product />
+            <Switch>
+                <Route path='/cart'>
+                    <div className='container' style={{marginTop:"20px"}}>
+                        <GioHang />
+                    </div>
+                </Route>
+                <Route path='/'>
+                    <Product />
+                </Route>
+            </Switch>
             <div className="container">
                 <Feedback />
             </div>
+            <Footer />
+            <Sidebar />
         </React.Fragment>
     )
 }

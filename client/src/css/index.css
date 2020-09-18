@@ -41,4 +41,7 @@ body,html,.MuiButton-root,.MuiTableCell-root,.MuiChip-root,.MuiTypography-h5,.Mu
     .maykhach_danhmuc{
         display: block !important;
     }
+    .row{
+        margin:0 !important;
+    }
 }

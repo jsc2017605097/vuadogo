@@ -2,11 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch } from 'react-redux'
 
 const useStyles = makeStyles({
     root: {
@@ -17,8 +17,9 @@ const useStyles = makeStyles({
     },
 });
 
-export default function MediaCard({product}) {
+export default function MediaCard({ product }) {
     const classes = useStyles();
+    const dispatch = useDispatch()
 
     return (
         <Card className={classes.root}>
@@ -37,14 +38,14 @@ export default function MediaCard({product}) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    {product.price}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", paddingLeft: '10px', justifyContent: "flex-start" }}>
+                <Button size="small" color="secondary">
+                    {new Intl.NumberFormat().format(product.price) + ' VNĐ'}
                 </Button>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={() => dispatch({ type: "ADD_TO_CART", data: product })}>
                     Mua hàng
                 </Button>
-            </CardActions>
+            </div>
         </Card>
     );
 }
