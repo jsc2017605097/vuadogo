@@ -38,7 +38,7 @@ export default function MediaCard({ product }) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", paddingLeft: '10px', justifyContent: "flex-start" }}>
+            <div style={{ display: "flex", paddingLeft: '10px', justifyContent: "space-around" }}>
                 <Button size="small" color="secondary">
                     {new Intl.NumberFormat().format(product.price) + ' VNĐ'}
                 </Button>

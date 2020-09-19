@@ -7,11 +7,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './index.css'
 import { FaHandPointRight } from 'react-icons/fa'
-
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
 export default function SimpleTable() {
     const classes = useStyles();
     const cart = useSelector(state => state.cart)
+    const dispatch = useDispatch()
 
     return (
         <div className='giohang'>
@@ -51,9 +53,11 @@ export default function SimpleTable() {
                                 </TableCell>
                                 <TableCell align="left"><img src={product.img} alt={product.name} width="100px" /></TableCell>
                                 <TableCell align="left">{product.name}</TableCell>
-                                <TableCell align="left">{product.soluong}</TableCell>
-                                <TableCell align="left" style={{color:"red"}}>{new Intl.NumberFormat().format(product.price)} VNĐ</TableCell>
-                                <TableCell align="left" style={{color:"red"}}>{new Intl.NumberFormat().format(product.price * product.soluong)} VNĐ</TableCell>
+                                <TableCell align="left"><SkipPreviousIcon className="pointer" onClick={() => dispatch({ type: "PRE", data: product})} />
+                                    {product.soluong} <SkipNextIcon className="pointer" onClick={() => dispatch({ type: "INCREASE", data: product})} />
+                                </TableCell>
+                                <TableCell align="left" style={{ color: "red" }}>{new Intl.NumberFormat().format(product.price)} VNĐ</TableCell>
+                                <TableCell align="left" style={{ color: "red" }}>{new Intl.NumberFormat().format(product.price * product.soluong)} VNĐ</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
