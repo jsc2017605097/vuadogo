@@ -13,17 +13,17 @@ const tutorialSteps = [
     {
         content: 'Chất lượng gỗ khá tốt, mình mua thấy ở đây giá cả hợp lí mà gỗ lại đẹp, dịch vụ chắm sóc khách hàng thì nhiệt tình, nói chung mình rất tin tưởng Vua Đồ Gỗ.',
         img:
-            'https://lh3.googleusercontent.com/proxy/R5i4LYBj17pfbjZXhMbw0MoRtxJcfReOHelP76JDqftObmnAlktfQUYjIF9CAW7qBMBZjLHrEqvY52SgdFWTBos5uKOQhJyiOWCly43KfXs1oeQhqygN8ekz3veS_A',
+            'https://lh3.googleusercontent.com/proxy/s_u2HqUo4wbhxkRVsOqX2l0xijwF-GusKUIv1m0Aw-6vzUjjwM18LH_La-IlCFWyM5G7R01l98X0pDkTHVagYGNvzqaVB8DSkdmaDb45seIfeh4AriZe-YMs6uQRPQ',
     },
     {
         content: 'Bird',
         img:
-            'https://lh3.googleusercontent.com/proxy/zxG3cqwQqrMsiAjUU1C8WJJksbHTRNqCjl6oXbOwo4BD3tjP3noptl8Hvike_R8clDyhFBLiu8GGAsVjR4BPoqEGWGmXB4I2cvLgQMezQmueVVQp58W8O6YOCb5vDA',
+            'https://lh3.googleusercontent.com/proxy/s0S-vZFJ7CZyYqChfGVW9MkS8xKuriBRonpAc7q3Oc5dAvxMPmRiRf7uUp0zK0Z42J1cNXVmRultyLdjarRJm6-vy2HmgTX-Su4ZdHvgnomjlbQNSxygsZ1VBsXWCw',
     },
     {
         content: 'Bali, Indonesia',
         img:
-            'https://www.hakuhodo-global.com/wp_admin/wp-content/uploads/2017/11/Shuntaro_Ito2square.jpg',
+            'https://lh3.googleusercontent.com/proxy/s0S-vZFJ7CZyYqChfGVW9MkS8xKuriBRonpAc7q3Oc5dAvxMPmRiRf7uUp0zK0Z42J1cNXVmRultyLdjarRJm6-vy2HmgTX-Su4ZdHvgnomjlbQNSxygsZ1VBsXWCw',
     },
     {
         content: 'NeONBRAND Digital Marketing, Las Vegas, United States',

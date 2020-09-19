@@ -42,4 +42,13 @@ function cartReducer(state = [], action) {
     }
 }
 
-export default cartReducer
+function alertSuccess(state = false, action) {
+    switch (action.type) {
+        case 'ALERT_SUCCESS':
+            return true
+        default:
+            return state
+    }
+}
+
+export default { cartReducer, alertSuccess }

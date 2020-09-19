@@ -22,7 +22,8 @@ const reducer = combineReducers({
   selectedProduct: productReducers.selectedProduct,
   filter: filter,
   checkGetProduct: checkDataReducer.getProduct,
-  cart: cartReducer
+  cart: cartReducer.cartReducer,
+  alert:cartReducer.alertSuccess
 })
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)))

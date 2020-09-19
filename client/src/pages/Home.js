@@ -9,6 +9,7 @@ import Footer from '../maykhach/footer'
 import Sidebar from '../maykhach/sidebar'
 import { Switch, Route } from 'react-router-dom'
 import GioHang from '../maykhach/giohang'
+import AlertGiohang from '../maykhach/success_giohang'
 
 export default function Home() {
     return (
@@ -30,6 +31,7 @@ export default function Home() {
             <div className="container">
                 <Feedback />
             </div>
+            <AlertGiohang />
             <Footer />
             <Sidebar />
         </React.Fragment>
