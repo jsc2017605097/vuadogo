@@ -13,17 +13,17 @@ const tutorialSteps = [
     {
         content: 'Chất lượng gỗ khá tốt, mình mua thấy ở đây giá cả hợp lí mà gỗ lại đẹp, dịch vụ chắm sóc khách hàng thì nhiệt tình, nói chung mình rất tin tưởng Vua Đồ Gỗ.',
         img:
-            'https://lh3.googleusercontent.com/proxy/s_u2HqUo4wbhxkRVsOqX2l0xijwF-GusKUIv1m0Aw-6vzUjjwM18LH_La-IlCFWyM5G7R01l98X0pDkTHVagYGNvzqaVB8DSkdmaDb45seIfeh4AriZe-YMs6uQRPQ',
+            'https://lh3.googleusercontent.com/proxy/_N9dZueOMDcI1BCzPXfAs7gidnpm_bh786bJEETpqqFp71hihBY81_e1o2MAIkrgzD321ghozj9U6t-E8fgK6SKPHcIOMgqEoYzXBNneXEC3r-pvvbA2ydEoMsJSWw',
     },
     {
         content: 'Bird',
         img:
-            'https://lh3.googleusercontent.com/proxy/s0S-vZFJ7CZyYqChfGVW9MkS8xKuriBRonpAc7q3Oc5dAvxMPmRiRf7uUp0zK0Z42J1cNXVmRultyLdjarRJm6-vy2HmgTX-Su4ZdHvgnomjlbQNSxygsZ1VBsXWCw',
+            'https://techcrunch.com/wp-content/uploads/2016/09/2016_01_23_weebly_45251web.jpg?w=730&crop=1',
     },
     {
         content: 'Bali, Indonesia',
         img:
-            'https://lh3.googleusercontent.com/proxy/s0S-vZFJ7CZyYqChfGVW9MkS8xKuriBRonpAc7q3Oc5dAvxMPmRiRf7uUp0zK0Z42J1cNXVmRultyLdjarRJm6-vy2HmgTX-Su4ZdHvgnomjlbQNSxygsZ1VBsXWCw',
+            'https://techcrunch.com/wp-content/uploads/2016/09/2016_01_23_weebly_45251web.jpg?w=730&crop=1',
     },
     {
         content: 'NeONBRAND Digital Marketing, Las Vegas, United States',

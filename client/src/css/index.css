@@ -44,4 +44,31 @@ body,html,.MuiButton-root,.MuiTableCell-root,.MuiChip-root,.MuiTypography-h5,.Mu
     .row{
         margin:0 !important;
     }
+    .sidebar{
+        top:100% !important;
+        transform: translate(0%,-110%) !important;
+    }
+}
+td{
+    min-width: 100px;
+}
+.MuiCardContent-root{
+    height:196px !important;
+    overflow: auto;
+}
+.nav-a a{
+    color:rgba(0,0,0,0.5);
+    padding-left: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.nav-a a:hover{
+    color: blue !important;
+}
+.sticky{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1002;
+    width: 100%;
 }

@@ -36,7 +36,7 @@ export default function Product() {
             return null
     }
     return (
-        <div style={{ marginTop: "20px" }}>
+        <div id='product' style={{ marginTop: "20px" }}>
             <Container>
                 <Search setSearch={setSearch} />
                 <div className="maykhach_danhmuc" style={{ background: "#3f51b5", padding: "10px 10px", color: "#FFFFFF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>

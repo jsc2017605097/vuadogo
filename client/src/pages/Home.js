@@ -15,12 +15,16 @@ export default function Home() {
     return (
         <React.Fragment>
             <Navbar />
+            <div style={{paddingTop:"76px"}}>
             <Slide />
-            <GioiThieu />
+            </div>
+            <div id='vechungtoi'>
+                <GioiThieu />
+            </div>
             <Category />
             <Switch>
                 <Route path='/cart'>
-                    <div className='container' style={{marginTop:"20px"}}>
+                    <div className='container' style={{ marginTop: "20px" }}>
                         <GioHang />
                     </div>
                 </Route>
@@ -28,11 +32,13 @@ export default function Home() {
                     <Product />
                 </Route>
             </Switch>
-            <div className="container">
+            <div id='feedback' className="container">
                 <Feedback />
             </div>
             <AlertGiohang />
-            <Footer />
+            <div id='footer'>
+                <Footer />
+            </div>
             <Sidebar />
         </React.Fragment>
     )

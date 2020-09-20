@@ -3,33 +3,83 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
     NavLink,
     NavbarText
 } from 'reactstrap';
-
+import Logo from '../../images/logo.jpg'
+import { Link } from 'react-router-dom'
+import { Link as LinkScroll } from "react-scroll";
 const Example = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <div>
+        <div className='sticky'>
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">reactstrap</NavbarBrand>
+                <Link to='/'><img style={{ borderRadius: "50%" }} alt='logo' src={Logo} width="60px" /></Link>
                 <NavbarToggler onClick={toggle} />
-                <Collapse isOpen={isOpen} navbar>
+                <Collapse className='nav-a' isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
+                            <LinkScroll
+                                spy={true}
+                                smooth={true}
+                                to="product"
+                                offset={-70}
+                                duration={1500}
+                            >
+                                Đồ gỗ nội thất
+                            </LinkScroll>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                            <LinkScroll
+                                to="vechungtoi"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={1500}
+                            >
+                                Về chúng tôi
+                            </LinkScroll>
                         </NavItem>
-                        </Nav>
-                    <NavbarText>Simple Text</NavbarText>
+                        <NavItem>
+                            <LinkScroll
+                                to="feedback"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={1500}
+                            >
+                                Phản hồi của khách hàng
+                            </LinkScroll>
+                        </NavItem>
+                        <NavItem>
+                            <LinkScroll
+                                to="googlemap"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={1500}
+                            >
+                                Google map
+                            </LinkScroll>
+                        </NavItem>
+                        <NavItem>
+                            <LinkScroll
+                                to="footer"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={1500}
+                            >
+                                Địa chỉ, thông tin chi tiết cửa hàng
+                            </LinkScroll>
+                        </NavItem>
+                    </Nav>
+                    <NavbarText>VUA ĐỒ GỖ kính chào quý khách!</NavbarText>
                 </Collapse>
             </Navbar>
         </div>

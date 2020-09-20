@@ -42,7 +42,10 @@ export default function MediaCard({ product }) {
                 <Button size="small" color="secondary">
                     {new Intl.NumberFormat().format(product.price) + ' VNĐ'}
                 </Button>
-                <Button size="small" color="primary" onClick={() => dispatch({ type: "ADD_TO_CART", data: product })}>
+                <Button size="small" color="primary" onClick={() => {
+                    dispatch({ type: "ADD_TO_CART", data: product })
+                    dispatch({type:"ALERT_SUCCESS"})
+                }}>
                     Mua hàng
                 </Button>
             </div>

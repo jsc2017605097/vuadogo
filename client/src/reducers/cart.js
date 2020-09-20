@@ -46,6 +46,8 @@ function alertSuccess(state = false, action) {
     switch (action.type) {
         case 'ALERT_SUCCESS':
             return true
+        case 'HIDDEN_ALERT':
+            return false
         default:
             return state
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -19,23 +19,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedSnackbars() {
     const classes = useStyles();
-    const alert = useSelector(state=>state.alert)
-
-    const [open, setOpen] = React.useState(alert);
+    const open = useSelector(state=>state.alert)
+    const dispatch = useDispatch()
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-
-        setOpen(false);
+        dispatch({type:"HIDDEN_ALERT"})
     };
 
     return (
         <div className={classes.root}>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">
-                    This is a success message!
+                    Đặt hàng thành công!
                 </Alert>
             </Snackbar>
         </div>

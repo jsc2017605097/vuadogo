@@ -6,7 +6,7 @@ import { FaFacebookF } from 'react-icons/fa'
 import { FiPhoneCall } from 'react-icons/fi'
 import Cart from '../cart'
 import { Link } from 'react-router-dom'
-
+import HomeIcon from '@material-ui/icons/Home';
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -23,6 +23,13 @@ export default function FloatingActionButtons() {
 
     return (
         <div className="sidebar">
+            <div className={classes.root} style={{marginBottom:"10px"}}>
+                <Link to="/">
+                    <Fab color="primary" aria-label="add">
+                        <HomeIcon />
+                    </Fab>
+                </Link>
+            </div>
             <div className={classes.root}>
                 <Link to='/cart'>
                     <Fab color="inherit" aria-label="add">
