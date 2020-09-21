@@ -1,24 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.6782bef5.chunk.css",
-    "main.js": "/static/js/main.53212a1e.chunk.js",
-    "main.js.map": "/static/js/main.53212a1e.chunk.js.map",
+    "main.css": "/static/css/main.00672c85.chunk.css",
+    "main.js": "/static/js/main.86357b25.chunk.js",
+    "main.js.map": "/static/js/main.86357b25.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
     "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
-    "static/js/2.a9330e32.chunk.js": "/static/js/2.a9330e32.chunk.js",
-    "static/js/2.a9330e32.chunk.js.map": "/static/js/2.a9330e32.chunk.js.map",
+    "static/css/2.40a775a0.chunk.css": "/static/css/2.40a775a0.chunk.css",
+    "static/js/2.0662fad2.chunk.js": "/static/js/2.0662fad2.chunk.js",
+    "static/js/2.0662fad2.chunk.js.map": "/static/js/2.0662fad2.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.bfba05a6db3ad40cf8e70f8a1693d0b4.js": "/precache-manifest.bfba05a6db3ad40cf8e70f8a1693d0b4.js",
+    "precache-manifest.7e9d68e14879977e677a180a14d42e6a.js": "/precache-manifest.7e9d68e14879977e677a180a14d42e6a.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.6782bef5.chunk.css.map": "/static/css/main.6782bef5.chunk.css.map",
-    "static/js/2.a9330e32.chunk.js.LICENSE.txt": "/static/js/2.a9330e32.chunk.js.LICENSE.txt",
-    "static/media/bg1.jpg": "/static/media/bg1.e2e57003.jpg",
-    "static/media/cancel-24px.svg": "/static/media/cancel-24px.40908ebd.svg"
+    "static/css/2.40a775a0.chunk.css.map": "/static/css/2.40a775a0.chunk.css.map",
+    "static/css/main.00672c85.chunk.css.map": "/static/css/main.00672c85.chunk.css.map",
+    "static/js/2.0662fad2.chunk.js.LICENSE.txt": "/static/js/2.0662fad2.chunk.js.LICENSE.txt",
+    "static/media/logo.jpg": "/static/media/logo.601d0470.jpg",
+    "static/media/phongkhach.png": "/static/media/phongkhach.348e96a3.png",
+    "static/media/phongngu.png": "/static/media/phongngu.619b3726.png",
+    "static/media/phongtho.jpg": "/static/media/phongtho.fe17ee58.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.09b85ec0.js",
-    "static/js/2.a9330e32.chunk.js",
-    "static/css/main.6782bef5.chunk.css",
-    "static/js/main.53212a1e.chunk.js"
+    "static/css/2.40a775a0.chunk.css",
+    "static/js/2.0662fad2.chunk.js",
+    "static/css/main.00672c85.chunk.css",
+    "static/js/main.86357b25.chunk.js"
   ]
 }
