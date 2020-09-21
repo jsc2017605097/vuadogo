@@ -38,7 +38,7 @@ export default function SimpleTable() {
                 &nbsp;
                 &nbsp;
                 <FaHandPointRight style={{ color: "red" }} />
-                <Link to='/'>Tiếp tục mua hàng</Link>
+                <Link to='/' className="tieptucmuahang">Tiếp tục mua hàng</Link>
             </div>
             <Alert content="Giỏ hàng trống, hãy mua hàng ngay!" />
         </div>
@@ -50,7 +50,7 @@ export default function SimpleTable() {
                 &nbsp;
                 &nbsp;
                 <FaHandPointRight style={{ color: "red" }} />
-                <Link to='/'>Tiếp tục mua hàng</Link>
+                <Link  to='/' className="tieptucmuahang" >Tiếp tục mua hàng</Link>
             </div>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
@@ -59,6 +59,7 @@ export default function SimpleTable() {
                             <TableCell>STT</TableCell>
                             <TableCell align="left">Ảnh</TableCell>
                             <TableCell align="left">Tên</TableCell>
+                            <TableCell align="left">Xem chi tiết</TableCell>
                             <TableCell align="left">Số lượng</TableCell>
                             <TableCell align="left">Giá</TableCell>
                             <TableCell align="left">Thành tiền</TableCell>
@@ -71,8 +72,9 @@ export default function SimpleTable() {
                                 <TableCell component="th" scope="row">
                                     {key + 1}
                                 </TableCell>
-                                <TableCell align="left"><img src={product.img} alt={product.name} width="100px" /></TableCell>
+                                <TableCell align="left"><img src={product.img[0]} alt={product.name} width="100px" /></TableCell>
                                 <TableCell align="left">{product.name}</TableCell>
+                                <TableCell align="left"><Link style={{color:"blue !important"}} to={'/product/'+product._id}>Xem chi tiết</Link></TableCell>
                                 <TableCell align="left"><SkipPreviousIcon className="pointer" onClick={() => dispatch({ type: "PRE", data: product })} />
                                     {product.soluong} <SkipNextIcon className="pointer" onClick={() => dispatch({ type: "INCREASE", data: product })} />
                                 </TableCell>

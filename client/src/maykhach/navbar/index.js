@@ -78,7 +78,7 @@ const Example = (props) => {
                             </LinkScroll>
                         </NavItem>
                     </Nav>
-                    <NavbarText>VUA ĐỒ GỖ kính chào quý khách!</NavbarText>
+                    <NavbarText>VUA ĐỒ GỖ - GỖ THẬT GIÁ TRỊ THẬT</NavbarText>
                 </Collapse>
             </Navbar>
         </div>

@@ -4,10 +4,11 @@ import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 import { Row, Col } from 'reactstrap'
 import Loading from '../../components/loading'
-
-
+import Button from '@material-ui/core/Button';
+import { useDispatch } from 'react-redux'
 
 export default function Detail({ product }) {
+    const dispatch = useDispatch()
     let images = []
     if (!product) {
         return <div style={{ marginTop: "20px" }} className='flex'><Loading /></div>
@@ -34,9 +35,10 @@ export default function Detail({ product }) {
                         <h3>Tên sản phẩm: {product.name}</h3>
                         <p>Mô tả ngắn: {product.describtion}</p>
                         <p>Giá: <span style={{ color: "red" }}>{new Intl.NumberFormat().format(product.price)} VNĐ</span></p>
+                        <Button onClick={() => { dispatch({ type: 'ADD_TO_CART', data: product }); dispatch({ type: "ALERT_SUCCESS" }) }} variant="contained" color="secondary">Thêm vào giỏ hàng</Button>
                     </Col>
                 </Row>
-                <div dangerouslySetInnerHTML={{ __html: product.detail }}>
+                <div style={{padding:"10px"}} dangerouslySetInnerHTML={{ __html: product.detail }}>
                 </div>
             </div>
 

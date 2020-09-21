@@ -1,26 +1,29 @@
 import React from 'react';
 import { UncontrolledCarousel } from 'reactstrap';
+import phongngu from '../../images/phongngu.png'
+import phongtho from '../../images/phongtho.jpg'
+import phongkhach from '../../images/phongkhach.png'
 
 const items = [
     {
-        src: 'https://dogothanhphuong.vn/wp-content/uploads/banner-4.png',
-        altText: 'Slide 1',
-        caption: 'Slide 1',
-        header: 'Slide 1 Header',
+        src: phongkhach,
+        altText: 'VUA ĐỒ GỖ',
+        caption: 'VUA ĐỒ GỖ',
+        header: 'ĐỒ GỖ VỀ PHÒNG KHÁCH',
         key: '1'
     },
     {
-        src: 'https://dogothanhphuong.vn/wp-content/uploads/banner-4.png',
-        altText: 'Slide 2',
-        caption: 'Slide 2',
-        header: 'Slide 2 Header',
+        src: phongngu,
+        altText: 'VUA ĐỒ GỖ',
+        caption: 'VUA ĐỒ GỖ',
+        header: 'ĐỒ GỖ VỀ PHÒNG NGỦ',
         key: '2'
     },
     {
-        src: 'https://dogothanhphuong.vn/wp-content/uploads/banner-4.png',
-        altText: 'Slide 3',
-        caption: 'Slide 3',
-        header: 'Slide 3 Header',
+        src: phongtho,
+        altText: 'VUA ĐỒ GỖ',
+        caption: 'VUA ĐỒ GỖ',
+        header: 'ĐỒ GỖ VỀ PHÒNG THỜ',
         key: '3'
     }
 ];

@@ -48,6 +48,9 @@ body,html,.MuiButton-root,.MuiTableCell-root,.MuiChip-root,.MuiTypography-h5,.Mu
         top:100% !important;
         transform: translate(0%,-110%) !important;
     }
+    .image img{
+        width: 80% !important;
+    }
 }
 td{
     min-width: 100px;
@@ -74,4 +77,13 @@ td{
 }
 a{
     text-decoration: none !important;
+}
+.image{
+    text-align: center;
+}
+.image img{
+    width: 50% !important;
+}
+#vechungtoi a{
+    color:#FFFFFF !important;
 }
