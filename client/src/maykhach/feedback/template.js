@@ -6,35 +6,27 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import Img from '../../images/person.png'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
     {
         content: 'Chất lượng gỗ khá tốt, mình mua thấy ở đây giá cả hợp lí mà gỗ lại đẹp, dịch vụ chắm sóc khách hàng thì nhiệt tình, nói chung mình rất tin tưởng Vua Đồ Gỗ.',
-        img:
-            'https://lh3.googleusercontent.com/proxy/_N9dZueOMDcI1BCzPXfAs7gidnpm_bh786bJEETpqqFp71hihBY81_e1o2MAIkrgzD321ghozj9U6t-E8fgK6SKPHcIOMgqEoYzXBNneXEC3r-pvvbA2ydEoMsJSWw',
+        img: Img
     },
     {
         content: 'Bird',
-        img:
-            'https://techcrunch.com/wp-content/uploads/2016/09/2016_01_23_weebly_45251web.jpg?w=730&crop=1',
+        img: Img
     },
     {
         content: 'Bali, Indonesia',
-        img:
-            'https://techcrunch.com/wp-content/uploads/2016/09/2016_01_23_weebly_45251web.jpg?w=730&crop=1',
+        img: Img
     },
     {
         content: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-        img:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRKRlKoajg43IQzYuAfQ_hcvvgDfwe9aELgbQ&usqp=CAU',
-    },
-    {
-        content: 'Goč, Serbia',
-        img:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQwkGHpKT4paJEpRfUhkH9SbBWNmKYZneIKgw&usqp=CAU',
-    },
+        img: Img
+    }
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -74,7 +66,7 @@ function SwipeableTextMobileStepper() {
                         {Math.abs(activeStep - index) <= 2 ? (
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                                 <img alt={step.img} src={step.img} width="150px" style={{ borderRadius: "50%" }} />
-                                <blockquote style={{textAlign:"center"}}>{'"' + step.content + '"'}</blockquote>
+                                <blockquote style={{ textAlign: "center" }}>{'"' + step.content + '"'}</blockquote>
                             </div>
                         ) : null}
                     </div>

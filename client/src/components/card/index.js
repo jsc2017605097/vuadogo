@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
     root: {
@@ -26,7 +27,7 @@ export default function MediaCard({ product }) {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image={product.img.toString()}
+                    image={product.img[0].toString()}
                     title="Contemplative Reptile"
                 />
                 <CardContent>
@@ -38,13 +39,18 @@ export default function MediaCard({ product }) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <div style={{ display: "flex", padding: '10px', justifyContent: "space-around" }}>
+            <div style={{padding:"10px"}}>
                 <Button size="small" color="secondary">
                     {new Intl.NumberFormat().format(product.price) + ' VNĐ'}
                 </Button>
-                <Button size="small" color="primary" onClick={() => {
+            </div>
+            <div style={{ display: "flex", padding: '10px', justifyContent: "flex-start" }}>
+                <Button size="small" color="primary">
+                    <Link to={'/product/'+product._id}>Chi tiết</Link>
+                </Button>
+                <Button size="small" color="secondary" onClick={() => {
                     dispatch({ type: "ADD_TO_CART", data: product })
-                    dispatch({type:"ALERT_SUCCESS"})
+                    dispatch({ type: "ALERT_SUCCESS" })
                 }}>
                     Mua hàng
                 </Button>

@@ -23,7 +23,7 @@ export default function FloatingActionButtons() {
 
     return (
         <div className="sidebar">
-            <div className={classes.root} style={{marginBottom:"10px"}}>
+            <div className={classes.root} style={{ marginBottom: "10px" }}>
                 <Link to="/">
                     <Fab color="primary" aria-label="add">
                         <HomeIcon />
@@ -39,7 +39,7 @@ export default function FloatingActionButtons() {
             </div>
             <div className={classes.root}>
                 <Fab color="primary" aria-label="add">
-                    <FaFacebookF />
+                    <a rel="noopener noreferrer" target="_blank" style={{color:"#FFFFFF"}} href="https://www.facebook.com/CuahangVuadogo"><FaFacebookF /></a>
                 </Fab>
             </div>
             <div className={classes.root}>

@@ -7,16 +7,24 @@ import Product from '../maykhach/product'
 import Feedback from '../maykhach/feedback'
 import Footer from '../maykhach/footer'
 import Sidebar from '../maykhach/sidebar'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import GioHang from '../maykhach/giohang'
 import AlertGiohang from '../maykhach/success_giohang'
+import GoogleMap from '../maykhach/google_map'
+import Detail from '../maykhach/detail_product'
+import { useSelector } from 'react-redux'
 
 export default function Home() {
+    let product = useSelector(state => state.product)
+    const match = useRouteMatch('/product/:id')
+    if (match) {
+        product = product.find(p => p._id === match.params.id)
+    }
     return (
         <React.Fragment>
             <Navbar />
-            <div style={{paddingTop:"76px"}}>
-            <Slide />
+            <div style={{ paddingTop: "76px" }}>
+                <Slide />
             </div>
             <div id='vechungtoi'>
                 <GioiThieu />
@@ -28,6 +36,9 @@ export default function Home() {
                         <GioHang />
                     </div>
                 </Route>
+                <Route path='/product/:id'>
+                    <Detail product={product} />
+                </Route>
                 <Route path='/'>
                     <Product />
                 </Route>
@@ -36,6 +47,7 @@ export default function Home() {
                 <Feedback />
             </div>
             <AlertGiohang />
+            <GoogleMap />
             <div id='footer'>
                 <Footer />
             </div>
