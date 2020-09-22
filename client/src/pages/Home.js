@@ -40,7 +40,7 @@ export default function Home() {
                     <Detail product={product} />
                 </Route>
                 <Route path='/'>
-                    <Product />
+                    <Product products={product} />
                 </Route>
             </Switch>
             <div id='feedback' className="container">

@@ -35,7 +35,7 @@ app.get('/', function (request, response) {
         data = data.replace(/\$OG_TITLE/g, 'VUA ĐỒ GỖ');
         data = data.replace(/\$OG_DESCRIPTION/g, "VUA ĐỒ GỖ chuyên cung cấp đồ gỗ nội thất, đồ gỗ về phòng ngủ,phòng bếp,phòng thờ,phòng khách...VUA ĐỒ GỖ, GỖ THẬT GIÁ TRỊ THẬT.");
         data = data.replace(/\$OG_KEYWORD/g, "vua đồ gỗ, vua do go, đồ gỗ nội thất, đồ gỗ phòng ngủ, do go noi that, đồ gỗ phòng khách, đồ gỗ,đồ gỗ tốt")
-        result = data.replace(/\$OG_IMAGE/g, path.join('./images', "logo.jpg"));
+        result = data.replace(/\$OG_IMAGE/g, path.join('./images', "display.png"));
         response.send(result);
     });
 });
@@ -53,7 +53,7 @@ app.get('/product/:id', async function (req, response) {
         data = data.replace(/\$OG_TITLE/g, product.name);
         data = data.replace(/\$OG_DESCRIPTION/g, product.describtion);
         data = data.replace(/\$OG_KEYWORD/g, "vua đồ gỗ, vua do go, đồ gỗ nội thất, đồ gỗ phòng ngủ, do go noi that, đồ gỗ phòng khách, đồ gỗ,đồ gỗ tốt")
-        result = data.replace(/\$OG_IMAGE/g,product.img[0]);
+        result = data.replace(/\$OG_IMAGE/g, product.img[0]);
         response.send(result);
     });
 });

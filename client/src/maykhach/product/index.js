@@ -7,14 +7,21 @@ import { useRouteMatch } from 'react-router-dom'
 import Loading from '../../components/loading'
 import Alert from '../../components/alert_error'
 import CategoryIcon from '@material-ui/icons/Category';
+import Pagination from '../pagination'
 
-export default function Product() {
+/**
+ * tong so bai viet
+ * so bai viet 1 trang = 2
+ * so trang = tong so bai viet/ so bai viet 1 trang
+ * @param {*} param0 
+ */
+export default function Product({ products }) {
+
     const [search, setSearch] = React.useState('')
-    const products = useSelector(state => state.product)
     const check = useSelector(state => state.checkGetProduct)
     const category = useSelector(state => state.category)
-    const [sapxep, setSapxep] = React.useState('GIAMDAN')
-
+    const [sapxep, setSapxep] = React.useState('TANGDAN')
+    const [tranghientai, setTranghientai] = React.useState(1)
     let productToShow = [...products]
     let selectedCategory = { name: "Tất cả" }
     const match = useRouteMatch('/category/:id')
@@ -25,6 +32,7 @@ export default function Product() {
     if (search) {
         productToShow = productToShow.filter(p => p.name.toLowerCase().indexOf(search.toLowerCase()) > -1)
     }
+
     switch (sapxep) {
         case 'GIAMDAN':
             productToShow.sort((a, b) => b.price - a.price)
@@ -35,6 +43,12 @@ export default function Product() {
         default:
             return null
     }
+
+    const sobaiviet1trang = 16
+    const tongsobaiviet = products.length
+    const sotrang = Math.ceil(tongsobaiviet / sobaiviet1trang)
+    productToShow = productToShow.slice(tranghientai * sobaiviet1trang - sobaiviet1trang, tranghientai * sobaiviet1trang)
+
     return (
         <div id='product' style={{ marginTop: "20px" }}>
             <Container>
@@ -56,6 +70,9 @@ export default function Product() {
                 </Row>
                 {check && productToShow.length === 0 && <Alert content='Không tìm thấy sản phẩm!' />}
                 {!check && <div className='flex'><Loading /></div>}
+                <div className='flex'>
+                    <Pagination sotrang={sotrang} setTranghientai={setTranghientai} />
+                </div>
             </Container>
         </div>
     )
