@@ -35,7 +35,7 @@ app.get('/', function (request, response) {
         data = data.replace(/\$OG_TITLE/g, 'VUA ĐỒ GỖ');
         data = data.replace(/\$OG_DESCRIPTION/g, "VUA ĐỒ GỖ chuyên cung cấp đồ gỗ nội thất, đồ gỗ về phòng ngủ,phòng bếp,phòng thờ,phòng khách...VUA ĐỒ GỖ, GỖ THẬT GIÁ TRỊ THẬT.");
         data = data.replace(/\$OG_KEYWORD/g, "vua đồ gỗ, vua do go, đồ gỗ nội thất, đồ gỗ phòng ngủ, do go noi that, đồ gỗ phòng khách, đồ gỗ,đồ gỗ tốt")
-        result = data.replace(/\$OG_IMAGE/g, path.join('https://vuadogo.herokuapp.com/build/images', "logo.jpg"));
+        result = data.replace(/\$OG_IMAGE/g, path.join('./build/images', "logo.jpg"));
         response.send(result);
     });
 });
