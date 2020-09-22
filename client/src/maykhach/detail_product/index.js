@@ -14,6 +14,7 @@ export default function Detail({ product }) {
         return <div style={{ marginTop: "20px" }} className='flex'><Loading /></div>
     }
     if (product) {
+        document.title=product.name
         product.img.forEach(img => {
             images.push({
                 original: img,
