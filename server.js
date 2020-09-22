@@ -10,7 +10,6 @@ const path = require('path')
 const fileUpload = require('express-fileupload')
 const fs = require('fs')
 app.use(express.json())
-app.use(express.static('build'))
 app.use(fileUpload())
 
 const userRouter = require('./route/user')
@@ -22,7 +21,25 @@ const MONGO_URI = process.env.MONGO_URI
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => console.log('MongoDB connected...'))
     .catch(error => console.log('MongDB connect error!'))
+// ---------- TOI UU WEBSITE -----------
+app.get('/', function (request, response) {
+    const filePath = path.resolve(__dirname, './build', 'index.html');
 
+    // read in the index.html file
+    fs.readFile(filePath, 'utf8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // replace the special strings with server generated strings
+        data = data.replace(/\$OG_TITLE/g, 'VUA ĐỒ GỖ');
+        data = data.replace(/\$OG_DESCRIPTION/g, "VUA ĐỒ GỖ chuyên cung cấp đồ gỗ nội thất, đồ gỗ về phòng ngủ,phòng bếp,phòng thờ,phòng khách...VUA ĐỒ GỖ, GỖ THẬT GIÁ TRỊ THẬT.");
+        data = data.replace(/\$OG_KEYWORD/g, "vua đồ gỗ, vua do go, đồ gỗ nội thất, đồ gỗ phòng ngủ, do go noi that, đồ gỗ phòng khách, đồ gỗ,đồ gỗ tốt")
+        result = data.replace(/\$OG_IMAGE/g, './build/logo.jpg');
+        response.send(result);
+    });
+});
+//-----------------
 app.use('/api/user', middleware.checkToken, userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/category', categoryRouter)
@@ -115,6 +132,7 @@ app.post('/api/info', middleware.checkToken, (req, res) => {
 
 app.use(middleware.handleError)
 
+app.use(express.static('build'))
 app.use('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
