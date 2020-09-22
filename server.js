@@ -53,7 +53,7 @@ app.get('/product/:id', async function (req, response) {
         data = data.replace(/\$OG_TITLE/g, product.name);
         data = data.replace(/\$OG_DESCRIPTION/g, product.describtion);
         data = data.replace(/\$OG_KEYWORD/g, "vua đồ gỗ, vua do go, đồ gỗ nội thất, đồ gỗ phòng ngủ, do go noi that, đồ gỗ phòng khách, đồ gỗ,đồ gỗ tốt")
-        result = data.replace(/\$OG_IMAGE/g,"https://vuadogo.herokuapp.com/build" + product.img[0]);
+        result = data.replace(/\$OG_IMAGE/g,product.img[0]);
         response.send(result);
     });
 });
