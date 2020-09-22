@@ -21,6 +21,7 @@ export default function Dashboard() {
         }
         return state.product
     })
+    document.title="VUA ĐỒ GỖ"
     return (
         <div>
             <div className='container'>

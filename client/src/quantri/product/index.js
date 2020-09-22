@@ -12,8 +12,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import Loading from '../../components/loading'
 import axios from 'axios'
 import Alert from '../../components/alert_error';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ButtonEdit from '../../components/button_edit'
+import Pagination from '../../maykhach/pagination'
 
 const useStyles = makeStyles({
     table: {
@@ -26,6 +27,8 @@ export default function SimpleTable(props) {
     const classes = useStyles();
     const checkGetData = useSelector(state => state.checkGetProduct)
     const dispatch = useDispatch()
+    const [tranghientai, setTranghientai] = React.useState(1)
+
     let productsToShow = props.products
 
     if (props.search) {
@@ -34,6 +37,9 @@ export default function SimpleTable(props) {
         })
     }
 
+    const sobaiviet1trang = 16
+    const sotrang = Math.ceil(productsToShow.length / sobaiviet1trang)
+    productsToShow = productsToShow.slice(tranghientai * sobaiviet1trang - sobaiviet1trang, tranghientai * sobaiviet1trang)
     function deleteProduct(id, name) {
         return () => {
             if (window.confirm(`Bạn có chắc chắn muốn xóa ${name} không ?`)) {
@@ -84,6 +90,9 @@ export default function SimpleTable(props) {
                         </TableBody>
                     </Table>
                 </TableContainer> : <div><Alert content={"Không tìm thấy sản phẩm!"} /></div>}
+            <div>
+                <Pagination sotrang={sotrang} setTranghientai={setTranghientai} />
+            </div>
         </div>
     );
 }

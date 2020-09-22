@@ -20,6 +20,7 @@ export default function Home() {
     if (match) {
         product = product.find(p => p._id === match.params.id)
     }
+    document.title="VUA ĐỒ GỖ"
     return (
         <React.Fragment>
             <Navbar />

@@ -6,26 +6,34 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import Img from '../../images/person.png'
+import img1 from '../../images/khach_hang1.png'
+import img2 from '../../images/khach_hang2.jpg'
+import img3 from '../../images/khach_hang3.jpg'
+import img4 from '../../images/khach_hang4.png'
+import img5 from '../../images/khach_hang5.png'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
     {
-        content: 'Chất lượng gỗ khá tốt, mình mua thấy ở đây giá cả hợp lí mà gỗ lại đẹp, dịch vụ chắm sóc khách hàng thì nhiệt tình, nói chung mình rất tin tưởng Vua Đồ Gỗ.',
-        img: Img
+        content: 'Anh Phong: Chất lượng gỗ khá tốt, mình mua thấy ở đây giá cả hợp lí mà gỗ lại đẹp.',
+        img: img1
     },
     {
-        content: 'Bird',
-        img: Img
+        content: 'Anh Nam: Hỗ trợ nhiệt tình, hàng chất lượng, mình sẽ giới thiệu cho nhiều người biết đến VUA ĐỒ GỖ hơn.',
+        img: img2
     },
     {
-        content: 'Bali, Indonesia',
-        img: Img
+        content: 'Chị Hòa: Bây giờ mình mới biết đến VUA ĐỒ GỖ, thật tiếc vì không biết sớm hơn, chất lượng quá tốt, tư vấn nhiệt tình.',
+        img: img3
     },
     {
-        content: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-        img: Img
+        content: 'Chị Linh: Cửa hàng này nhiều đỗ gỗ sịn thật, chỉ muốn mua hết mang về thôi.',
+        img: img4
+    },
+    {
+        content: 'Chị Anh: Tôi hài lòng với sản phẩm ở đây, gỗ chất lượng tốt, thiết kế đẹp cho khách.',
+        img: img5
     }
 ];
 
