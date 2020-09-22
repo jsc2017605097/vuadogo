@@ -11,7 +11,7 @@ const fileUpload = require('express-fileupload')
 const fs = require('fs')
 app.use(express.json())
 app.use(fileUpload())
-
+const productModel = require('./model/products')
 const userRouter = require('./route/user')
 const loginRouter = require('./route/login')
 const categoryRouter = require('./route/category')
@@ -35,7 +35,25 @@ app.get('/', function (request, response) {
         data = data.replace(/\$OG_TITLE/g, 'VUA ĐỒ GỖ');
         data = data.replace(/\$OG_DESCRIPTION/g, "VUA ĐỒ GỖ chuyên cung cấp đồ gỗ nội thất, đồ gỗ về phòng ngủ,phòng bếp,phòng thờ,phòng khách...VUA ĐỒ GỖ, GỖ THẬT GIÁ TRỊ THẬT.");
         data = data.replace(/\$OG_KEYWORD/g, "vua đồ gỗ, vua do go, đồ gỗ nội thất, đồ gỗ phòng ngủ, do go noi that, đồ gỗ phòng khách, đồ gỗ,đồ gỗ tốt")
-        result = data.replace(/\$OG_IMAGE/g,path.join(__dirname,'build','images',"logo.jpg"));
+        result = data.replace(/\$OG_IMAGE/g, path.join(__dirname, 'build', 'images', "logo.jpg"));
+        response.send(result);
+    });
+});
+
+app.get('/product/:id', async function (req, response) {
+    const product = await productModel.findById(req.params.id)
+    const filePath = path.resolve(__dirname, './build', 'index.html');
+    // read in the index.html file
+    fs.readFile(filePath, 'utf8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        // replace the special strings with server generated strings
+        data = data.replace(/\$OG_TITLE/g, product.name);
+        data = data.replace(/\$OG_DESCRIPTION/g, product.describtion);
+        data = data.replace(/\$OG_KEYWORD/g, "vua đồ gỗ, vua do go, đồ gỗ nội thất, đồ gỗ phòng ngủ, do go noi that, đồ gỗ phòng khách, đồ gỗ,đồ gỗ tốt")
+        result = data.replace(/\$OG_IMAGE/g, path.join(__dirname, 'build' + product.img));
         response.send(result);
     });
 });
