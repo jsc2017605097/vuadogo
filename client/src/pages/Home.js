@@ -24,7 +24,7 @@ export default function Home() {
     return (
         <React.Fragment>
             <Navbar />
-            <div style={{ paddingTop: "76px" }}>
+            <div className="container" style={{ paddingTop: "76px" }}>
                 <Slide />
             </div>
             <div id='vechungtoi'>

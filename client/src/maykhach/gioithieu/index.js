@@ -3,7 +3,6 @@ import { Jumbotron } from 'reactstrap';
 import { Container } from "reactstrap"
 import Button from '@material-ui/core/Button';
 import { Link as LinkScroll } from "react-scroll";
-import Vuadogo from '../vuadogo'
 
 const Example = (props) => {
     return (
@@ -15,11 +14,11 @@ const Example = (props) => {
                     SĐT: <span style={{ color: 'red' }}>0333.02.5556 hoặc 0334985555</span>
                         <br />
                     Website: vuadogo.org
+                    <br />
                     Facebook:<a href="https://www.facebook.com/CuahangVuadogo">Facebook</a>
                         <br />
                     Vua Đồ Gỗ hân hạnh là nhà sản xuất, nhà cung cấp trực tiếp các sản phẩm nội thất đồ gỗ với đa dạng mẫu mã đáp ứng mọi nhu cầu sử dụng từ nội thất phòng ngủ, phòng khách, phòng bếp đến trường học, văn phòng,… đảm bảo uy tín và luôn luôn đặt chất lượng lên hàng đầu.
                         <div className='flex'>
-                            <Vuadogo />
                         </div>
                         <br />
                         <b>Các sản phẩm bán ra sơ lược</b>
@@ -34,6 +33,7 @@ const Example = (props) => {
                     <br />
                     + Nội thất khác:  cung cấp các sản phẩm tượng gỗ, tranh gỗ, bàn học sinh, bàn làm việc, bàn giám đốc, hộp trang điểm, đũa, hộp giấy gỗ, đốc lịch gỗ,...
                     Ngoài ra, VUA ĐỒ GỖ còn nhận làm cửa gỗ, cầu thang gỗ, cửa đại hội, bậc thang gỗ,...
+                    <br />
                     <br />
                         <b>XƯỞNG CAM KẾT:</b>
                         <br />
