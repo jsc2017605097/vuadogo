@@ -1,10 +1,10 @@
 import React from 'react';
 import { UncontrolledCarousel } from 'reactstrap';
-import img1 from '../vuadogo/vuadogo1.JPG'
-import img2 from '../vuadogo/vuadogo2.JPG'
-import img3 from '../vuadogo/vuadogo3.JPG'
-import img4 from '../vuadogo/vuadogo4.JPG'
-import img5 from '../vuadogo/vuado1.JPG'
+import img1 from '../vuadogo/vuadogo1.webp'
+import img2 from '../vuadogo/vuadogo2.webp'
+import img3 from '../vuadogo/vuadogo3.webp'
+import img4 from '../vuadogo/vuadogo4.webp'
+import img5 from '../vuadogo/vuado1.webp'
 
 const items = [
     {
