@@ -13,11 +13,11 @@ export default function Footer() {
                 <div className="row">
                     <div className="col-sm-12 col-md-6">
                         <h6>Về chúng tôi</h6>
-                        <p className="text-justify">Vuadogo.com <i> LUÔN MONG MUỐN  </i> mang đến những sản phẩm tốt nhất cho khách hàng, VUA ĐỒ GỖ
-                        chuyên sản xuất và cung cấp các sản phẩm nội thất cho gia đình như là phòng ngủ,
-                        phòng bếp phòng thờ,phòng khách...Gỗ được làm tự nhiên, có nguồn gốc rõ ràng....</p>
-                        <div>Địa chỉ: Đường tỉnh 76, xã Hợp Tiến, huyện Mỹ Đức, thành phố Hà Nội.</div>
-                        <div>Số điện thoại: 0982839405</div>
+                        <p className="text-justify">
+                        </p>
+                        <div>Địa chỉ show room : Đường tỉnh 76, xã Hợp Tiến, huyện Mỹ Đức, thành phố Hà Nội.</div>
+                        <div>Xưởng sản xuất: xã Chuyên Mỹ, Phú Xuyên, Hà Nội</div>
+                        <div style={{color:"red"}}>Số điện thoại: 0333.02.5556 hoặc 0334985555</div>
                         <div>Facebook: <a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/CuahangVuadogo">https://www.facebook.com/CuahangVuadogo</a></div>
                     </div>
                     <div className="col-xs-6 col-md-3">
@@ -30,10 +30,8 @@ export default function Footer() {
                         <h6>Tài khoản ngân hàng</h6>
                         <ul className="footer-links">
                             <li>Chủ tài khoản: Đỗ Việt Dương</li>
-                            <li>Techcombank: 3243243287548543</li>
-                            <li>Lienviet: 3243243287548543</li>
-                            <li>Agribank: 3243243287548543</li>
-                            <li>Vietcombank: 3243243287548543</li>
+                            <li>Agribank: 2205205283289</li>
+                            <li>Ngân hàng ACB: 916288888</li>
                         </ul>
                     </div>
                 </div>

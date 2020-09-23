@@ -14,7 +14,7 @@ export default function Detail({ product }) {
         return <div style={{ marginTop: "20px" }} className='flex'><Loading /></div>
     }
     if (product) {
-        document.title=product.name
+        document.title = product.name
         product.img.forEach(img => {
             images.push({
                 original: img,
@@ -35,11 +35,14 @@ export default function Detail({ product }) {
                     <Col style={{ paddingTop: '10px' }} xs='12' sm='6' lg='5' xl='5'>
                         <h3>Tên sản phẩm: {product.name}</h3>
                         <p>Mô tả ngắn: {product.describtion}</p>
-                        <p>Giá: <span style={{ color: "red" }}>{new Intl.NumberFormat().format(product.price)} VNĐ</span></p>
-                        <Button onClick={() => { dispatch({ type: 'ADD_TO_CART', data: product }); dispatch({ type: "ALERT_SUCCESS" }) }} variant="contained" color="secondary">Thêm vào giỏ hàng</Button>
+                        <p>Giá: <span style={{ color: "red", fontWeight: "bold" }}>{new Intl.NumberFormat().format(product.price)} VNĐ</span></p>
+                        <Button  variant="contained" color="secondary">Trả góp lãi xuất 0%</Button>
+                        <br />
+                        <br />
+                        <Button onClick={() => { dispatch({ type: 'ADD_TO_CART', data: product }); dispatch({ type: "ALERT_SUCCESS" }) }} variant="contained" color="secondary">Mua hàng</Button>
                     </Col>
                 </Row>
-                <div style={{padding:"10px"}} dangerouslySetInnerHTML={{ __html: product.detail }}>
+                <div style={{ padding: "10px" }} dangerouslySetInnerHTML={{ __html: product.detail }}>
                 </div>
             </div>
 

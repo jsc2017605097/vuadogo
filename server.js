@@ -133,7 +133,7 @@ app.post('/api/info', middleware.checkToken, (req, res) => {
 
     var mailOptions = {
         from: process.env.GMAIL,
-        to: process.env.GMAIL,
+        to: "vuadogo9193@gmail.com",
         subject: 'ĐƠN HÀNG',
         html: html
     };

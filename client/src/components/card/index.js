@@ -41,14 +41,15 @@ export default function MediaCard({ product }) {
             </CardActionArea>
             <div style={{padding:"10px"}}>
                 <Button size="small" color="secondary">
-                    {new Intl.NumberFormat().format(product.price) + ' VNĐ'}
+                    <span style={{fontWeight:"bold"}}>{new Intl.NumberFormat().format(product.price) + ' VNĐ'}</span>
                 </Button>
+                <Button variant="contained" color="secondary" style={{width:"100%"}}>Trả góp lãi xuất 0%</Button>
             </div>
-            <div style={{ display: "flex", padding: '10px', justifyContent: "flex-start" }}>
-                <Button size="small" color="primary">
-                    <Link to={'/product/'+product._id}>Chi tiết</Link>
+            <div style={{ display: "flex", padding: '10px', justifyContent: "center" }}>
+                <Button style={{marginRight:"10px"}} variant="contained" size="small" color="primary">
+                    <Link className='chitiet' to={'/product/'+product._id}>Chi tiết</Link>
                 </Button>
-                <Button size="small" color="secondary" onClick={() => {
+                <Button size="small" variant="contained" color="secondary" onClick={() => {
                     dispatch({ type: "ADD_TO_CART", data: product })
                     dispatch({ type: "ALERT_SUCCESS" })
                 }}>
