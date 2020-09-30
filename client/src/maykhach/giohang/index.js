@@ -27,6 +27,13 @@ export default function SimpleTable() {
     const classes = useStyles();
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        const y = document.getElementById("banner").scrollHeight + document.getElementById("vechungtoi").scrollHeight
+        window.scrollTo(0, y)
+    }, [])
+
+    
     let total = 0
     cart.forEach(p => {
         total += p.price * p.soluong

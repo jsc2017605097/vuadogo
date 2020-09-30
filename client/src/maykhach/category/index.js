@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Chips(props) {
+export default function Chips() {
     const category = useSelector(state => state.category)
 
     const classes = useStyles();

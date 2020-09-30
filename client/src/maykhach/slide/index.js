@@ -1,46 +1,41 @@
 import React from 'react';
 import { UncontrolledCarousel } from 'reactstrap';
-import img1 from '../vuadogo/vuadogo1.webp'
-import img2 from '../vuadogo/vuadogo2.webp'
-import img3 from '../vuadogo/vuadogo3.webp'
-import img4 from '../vuadogo/vuadogo4.webp'
-import img5 from '../vuadogo/vuado1.webp'
+import img1 from '../vuadogo/vuadogo1.jpg'
+import img2 from '../vuadogo/vuadogo2.jpg'
+import img3 from '../vuadogo/vuadogo3.jpg'
+import img4 from '../vuadogo/vuadogo4.jpg'
+import img5 from '../vuadogo/vudo1.jpg'
 
 const items = [
     {
         src: img1,
         altText: 'VUA ĐỒ GỖ',
-        caption: 'VUA ĐỒ GỖ',
-        header: ' CỬA HÀNG VUA ĐỒ GỖ',
-        key: '1'
+        key: '1',
+        captionText:""
     },
     {
         src: img2,
         altText: 'VUA ĐỒ GỖ',
-        caption: 'VUA ĐỒ GỖ',
-        header: 'SẢN PHẦM NỔI BẬT',
-        key: '2'
+        key: '2',
+        captionText:""
     },
     {
         src: img3,
         altText: 'VUA ĐỒ GỖ',
-        caption: 'VUA ĐỒ GỖ',
-        header: 'KHAI TRƯƠNG VUA ĐỒ GỖ',
-        key: '3'
+        key: '3',
+        captionText:""
     },
     {
         src: img4,
         altText: 'VUA ĐỒ GỖ',
-        caption: 'VUA ĐỒ GỖ',
-        header: 'KHAI TRƯƠNG VUA ĐỒ GỖ',
-        key: '4'
+        key: '4',
+        captionText:""
     },
     {
         src: img5,
         altText: 'VUA ĐỒ GỖ',
-        caption: 'VUA ĐỒ GỖ',
-        header: 'ĐẦY ĐỦ CÁC LOẠI SẢN PHẨM TẠI VUA ĐỒ GỖ',
-        key: '5'
+        key: '5',
+        captionText:""
     },
 ];
 

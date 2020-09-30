@@ -20,13 +20,32 @@ export default function Product({ products }) {
     const [search, setSearch] = React.useState('')
     const check = useSelector(state => state.checkGetProduct)
     const category = useSelector(state => state.category)
-    const [sapxep, setSapxep] = React.useState('TANGDAN')
+    const [sapxep, setSapxep] = React.useState('NGAUNHIEN')
     const [tranghientai, setTranghientai] = React.useState(1)
     let productToShow = [...products]
+
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
     let selectedCategory = { name: "Tất cả" }
     const match = useRouteMatch('/category/:id')
     if (match) {
-        productToShow = products.filter(p => p.category === match.params.id)
         selectedCategory = category.find(c => c._id === match.params.id)
     }
     if (search) {
@@ -41,11 +60,11 @@ export default function Product({ products }) {
             productToShow.sort((a, b) => a.price - b.price)
             break;
         default:
-            return null
+            productToShow = shuffle(productToShow)
     }
 
     const sobaiviet1trang = 16
-    const tongsobaiviet = products.length
+    const tongsobaiviet = productToShow.length
     const sotrang = Math.ceil(tongsobaiviet / sobaiviet1trang)
     productToShow = productToShow.slice(tranghientai * sobaiviet1trang - sobaiviet1trang, tranghientai * sobaiviet1trang)
 
@@ -58,6 +77,7 @@ export default function Product({ products }) {
                     <div>
                         <span style={{ marginRight: "10px" }}>Sắp xếp theo</span>
                         <select value={sapxep} onChange={event => setSapxep(event.target.value)}>
+                            <option value="NGAUNHIEN">Ngẫu nhiên</option>
                             <option value="TANGDAN">Giá theo tăng dần</option>
                             <option value='GIAMDAN'>Giá theo giảm dần</option>
                         </select>
@@ -71,7 +91,7 @@ export default function Product({ products }) {
                 {check && productToShow.length === 0 && <Alert content='Không tìm thấy sản phẩm!' />}
                 {!check && <div className='flex'><Loading /></div>}
                 <div className='flex'>
-                    <Pagination sotrang={sotrang} setTranghientai={setTranghientai} />
+                    <Pagination sotrang={sotrang} tranghientai={tranghientai} setTranghientai={setTranghientai} />
                 </div>
             </Container>
         </div>

@@ -43,7 +43,7 @@ export default function MediaCard({ product }) {
                 <Button size="small" color="secondary">
                     <span style={{fontWeight:"bold"}}>{new Intl.NumberFormat().format(product.price) + ' VNĐ'}</span>
                 </Button>
-                <Button variant="contained" color="secondary" style={{width:"100%"}}>Trả góp lãi xuất 0%</Button>
+                <Button variant="contained" color="secondary" style={{width:"100%"}}>Trả góp lãi suất 0%</Button>
             </div>
             <div style={{ display: "flex", padding: '10px', justifyContent: "center" }}>
                 <Button style={{marginRight:"10px"}} variant="contained" size="small" color="primary">

@@ -6,11 +6,11 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import img1 from './khach_hang1.webp'
-import img2 from './khach_hang2.webp'
-import img3 from './khach_hang3.webp'
-import img4 from './khach_hang4.webp'
-import img5 from './khach_hang5.webp'
+import img1 from './khach_hang1.jpg'
+import img2 from './khach_hang2.jpg'
+import img3 from './khach_hang3.jpg'
+import img4 from './khach_hang4.jpg'
+import img5 from './khach_hang5.jpg'
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 

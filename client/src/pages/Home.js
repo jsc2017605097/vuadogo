@@ -17,14 +17,18 @@ import { useSelector } from 'react-redux'
 export default function Home() {
     let product = useSelector(state => state.product)
     const match = useRouteMatch('/product/:id')
+    const match1 = useRouteMatch('/category/:id')
     if (match) {
         product = product.find(p => p._id === match.params.id)
     }
-    document.title="VUA ĐỒ GỖ"
+    if (match1) {
+        product = product.filter(p=>p.category === match1.params.id)
+    }
+    document.title = "VUA ĐỒ GỖ"
     return (
         <React.Fragment>
             <Navbar />
-            <div className="container" style={{ paddingTop: "76px" }}>
+            <div id='banner' className="container" style={{ paddingTop: "76px" }}>
                 <Slide />
             </div>
             <div id='vechungtoi'>
@@ -41,7 +45,7 @@ export default function Home() {
                     <Detail product={product} />
                 </Route>
                 <Route path='/'>
-                    <Product products={product} /> 
+                    <Product products={product} />
                 </Route>
             </Switch>
             <div id='feedback' className="container">

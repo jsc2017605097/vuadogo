@@ -10,9 +10,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function BasicPagination({ sotrang, setTranghientai }) {
+export default function BasicPagination({ sotrang, setTranghientai,tranghientai }) {
     const classes = useStyles();
-
+    React.useEffect(()=>{
+        if(tranghientai > sotrang){
+            setTranghientai(1)
+        }
+    })
     return (
         <div className={classes.root}>
             <Pagination count={sotrang} color="secondary" onChange={(event, page) => { setTranghientai(page) }} />

@@ -7,7 +7,7 @@ import { FiPhoneCall } from 'react-icons/fi'
 import Cart from '../cart'
 import { Link } from 'react-router-dom'
 import HomeIcon from '@material-ui/icons/Home';
-import Zalo from './zalo.webp'
+import Zalo from './zalo.jpg'
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {

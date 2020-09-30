@@ -36,7 +36,7 @@ export default function SimpleTable(props) {
             return product.name.toLowerCase().indexOf(props.search.toLowerCase()) > -1
         })
     }
-
+    console.log(productsToShow)
     const sobaiviet1trang = 16
     const sotrang = Math.ceil(productsToShow.length / sobaiviet1trang)
     productsToShow = productsToShow.slice(tranghientai * sobaiviet1trang - sobaiviet1trang, tranghientai * sobaiviet1trang)

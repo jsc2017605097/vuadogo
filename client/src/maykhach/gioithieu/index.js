@@ -18,8 +18,6 @@ const Example = (props) => {
                     Facebook:<a href="https://www.facebook.com/CuahangVuadogo">Facebook</a>
                         <br />
                     Vua Đồ Gỗ hân hạnh là nhà sản xuất, nhà cung cấp trực tiếp các sản phẩm nội thất đồ gỗ với đa dạng mẫu mã đáp ứng mọi nhu cầu sử dụng từ nội thất phòng ngủ, phòng khách, phòng bếp đến trường học, văn phòng,… đảm bảo uy tín và luôn luôn đặt chất lượng lên hàng đầu.
-                        <div className='flex'>
-                        </div>
                         <br />
                         <b>Các sản phẩm bán ra sơ lược</b>
                         <br />
