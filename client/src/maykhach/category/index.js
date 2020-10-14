@@ -4,7 +4,7 @@ import Chip from '@material-ui/core/Chip';
 import { useSelector } from 'react-redux'
 import Loading from '../../components/loading'
 import { Link } from 'react-router-dom'
-
+import './index.css'
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -23,7 +23,7 @@ export default function Chips() {
     const classes = useStyles();
     
     return (
-        <div className={classes.root}>
+        <div className={classes.root+' container'}>
             <Link to='/'>
                 <Chip
                     key={0}
