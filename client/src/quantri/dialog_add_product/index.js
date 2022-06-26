@@ -71,7 +71,7 @@ export default function FullScreenDialog() {
             setCategory('')
             setContent('')
             dispatch({ type: "ADD_PRODUCT_TO_PRODUCT", data: res.data })
-            window.alert("Thêm mới thành công!")
+            handleClose()
         }).catch(error => window.alert(error.response.data))
     }
 

@@ -15,7 +15,7 @@ function cartReducer(state = [], action) {
                 newState[index].soluong += 1
             }
             else {
-                newState.push({ ...action.data, soluong: 1 })
+                newState.push({ ...action.data})
             }
             return newState
         case 'DELETE_CART':

@@ -7,7 +7,7 @@ import { FiPhoneCall } from 'react-icons/fi'
 import Cart from '../cart'
 import { Link } from 'react-router-dom'
 import HomeIcon from '@material-ui/icons/Home';
-import Zalo from './zalo.jpg'
+// import Zalo from './zalo.jpg'
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -50,11 +50,11 @@ export default function FloatingActionButtons() {
                     </Fab>
                 </a>
             </div>
-            <div className={classes.root} style={{marginTop:"10px"}}>
+            {/* <div className={classes.root} style={{marginTop:"10px"}}>
                 <a href="tel:+0333025556">
                     <img src={Zalo} width="56px" height="56px" style={{ borderRadius: "50%" }} alt='zalo' />
                 </a>
-            </div>
+            </div> */}
         </div>
 
     );

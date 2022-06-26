@@ -6,13 +6,12 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import ButtonDelete from '../../components/button_delete'
 import './index.css'
-import { useParams } from 'react-router-dom'
+import { useParams, Redirect } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
-
 export default function FullScreenDialog() {
     const id = useParams().id
     let product = useSelector(state => state.product.find(p => p._id === id))
-    
+
     const categorys = useSelector(state => state.category)
     const dispatch = useDispatch()
     const [images, setImages] = React.useState([])
@@ -22,9 +21,10 @@ export default function FullScreenDialog() {
     const [category, setCategory] = React.useState('')
     const [content, setContent] = React.useState('Đang tải...')
     const [removedImg, setRemoveImg] = React.useState([])
+    const [updateData, setUpdateData] = React.useState(false);
 
-    React.useEffect(()=>{
-        if(product){
+    React.useEffect(() => {
+        if (product) {
             setImages(product.img)
             setName(product.name)
             setDescribtion(product.describtion)
@@ -32,8 +32,8 @@ export default function FullScreenDialog() {
             setCategory(product.category)
             setContent(product.detail)
         }
-    },[product])
-    
+    }, [product])
+
     function handleSubmit(event) {
         event.preventDefault()
         const data = {
@@ -58,7 +58,7 @@ export default function FullScreenDialog() {
             }
         }).then(res => {
             dispatch({ type: "UPDATE_PRODUCT_AT_PRODUCT", data: res.data })
-            window.alert("Cập nhật thành công!")
+            setUpdateData(true);
         }).catch(error => window.alert(error.response.data))
     }
 
@@ -82,7 +82,9 @@ export default function FullScreenDialog() {
         const newImages = images.filter(img => img !== link)
         setImages(newImages)
     }
-
+    if (updateData) {
+        return <Redirect to='/dashboard' />;
+    }
     return (
         <div style={{ background: "#FFFFFF" }}>
             <div style={{ padding: '10px', background: "#3f51b5", color: "#FFFFFF" }}>Cập nhật sản phẩm</div>

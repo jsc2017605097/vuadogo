@@ -49,7 +49,15 @@ export default function Product({ products }) {
         selectedCategory = category.find(c => c._id === match.params.id)
     }
     if (search) {
-        productToShow = productToShow.filter(p => p.name.toLowerCase().indexOf(search.toLowerCase()) > -1)
+        let str = search.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+        productToShow = productToShow.filter(p => {
+            let newP = p.name.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+            return newP.toLowerCase().indexOf(str.toLowerCase()) > -1
+        })
     }
 
     switch (sapxep) {

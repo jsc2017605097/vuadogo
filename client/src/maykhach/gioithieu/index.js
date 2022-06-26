@@ -1,8 +1,6 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { Container } from "reactstrap"
-import Button from '@material-ui/core/Button';
-import { Link as LinkScroll } from "react-scroll";
 
 const Example = (props) => {
     return (
@@ -54,15 +52,6 @@ const Example = (props) => {
                     <hr className="my-2" />
                     <p>Để biết thêm thông tin chi tiết các sản phẩm nội thất đồ gỗ, quý khách vui lòng xem các sản phẩm dưới đây.</p>
                     <p className="lead">
-                        <Button variant="contained" color="primary"><LinkScroll
-                            spy={true}
-                            smooth={true}
-                            to="product"
-                            offset={-70}
-                            duration={1500}
-                        >
-                            Mua ngay
-                            </LinkScroll></Button>
                     </p>
                 </Container>
             </Jumbotron>

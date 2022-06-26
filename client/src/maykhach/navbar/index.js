@@ -10,9 +10,11 @@ import {
 import Logo from '../../images/logo.jpg'
 import { Link } from 'react-router-dom'
 import { Link as LinkScroll } from "react-scroll";
+import { useSelector } from 'react-redux'
+
 const Example = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const cart = useSelector(state => state.cart)
     const toggle = () => setIsOpen(!isOpen);
 
     return (
@@ -34,6 +36,13 @@ const Example = (props) => {
                             </LinkScroll>
                         </NavItem>
                         <NavItem>
+                            <Link
+                                to="/cart"
+                            >
+                                Giỏ hàng<sup style={{ color: "red" }}>{cart.length ? cart.length : ""}</sup>
+                            </Link>
+                        </NavItem>
+                        <NavItem>
                             <LinkScroll
                                 to="vechungtoi"
                                 spy={true}
@@ -53,17 +62,6 @@ const Example = (props) => {
                                 duration={1500}
                             >
                                 Phản hồi của khách hàng
-                            </LinkScroll>
-                        </NavItem>
-                        <NavItem>
-                            <LinkScroll
-                                to="googlemap"
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={1500}
-                            >
-                                Google map
                             </LinkScroll>
                         </NavItem>
                         <NavItem>

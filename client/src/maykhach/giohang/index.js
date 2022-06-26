@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './index.css'
-import { FaHandPointRight } from 'react-icons/fa'
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import Clear from '../../components/button_delete'
@@ -33,7 +32,7 @@ export default function SimpleTable() {
         window.scrollTo(0, y)
     }, [])
 
-    
+
     let total = 0
     cart.forEach(p => {
         total += p.price * p.soluong
@@ -41,11 +40,8 @@ export default function SimpleTable() {
     if (cart.length === 0) {
         return <div className='giohang'>
             <div style={{ background: "#3f51b5", color: "#FFFFFF", padding: "10px", display: 'flex', alignItems: "center" }}>
+                <Link to='/' className="tieptucmuahang" >Trang chủ&nbsp;&gt;&nbsp; </Link>
                 <span>Giỏ hàng của bạn</span>
-                &nbsp;
-                &nbsp;
-                <FaHandPointRight style={{ color: "red" }} />
-                <Link to='/' className="tieptucmuahang">Tiếp tục mua hàng</Link>
             </div>
             <Alert content="Giỏ hàng trống, hãy mua hàng ngay!" />
         </div>
@@ -53,11 +49,8 @@ export default function SimpleTable() {
     return (
         <div className='giohang'>
             <div style={{ background: "#3f51b5", color: "#FFFFFF", padding: "10px", display: 'flex', alignItems: "center" }}>
+                <Link to='/' className="tieptucmuahang" >Trang chủ&nbsp;&gt;&nbsp;</Link>
                 <span>Giỏ hàng của bạn</span>
-                &nbsp;
-                &nbsp;
-                <FaHandPointRight style={{ color: "red" }} />
-                <Link  to='/' className="tieptucmuahang" >Tiếp tục mua hàng</Link>
             </div>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
@@ -81,7 +74,7 @@ export default function SimpleTable() {
                                 </TableCell>
                                 <TableCell align="left"><img src={product.img[0]} alt={product.name} width="100px" /></TableCell>
                                 <TableCell align="left">{product.name}</TableCell>
-                                <TableCell align="left"><Link style={{color:"blue !important"}} to={'/product/'+product._id}>Xem chi tiết</Link></TableCell>
+                                <TableCell align="left"><Link style={{ color: "blue !important" }} to={'/product/' + product._id}>Xem chi tiết</Link></TableCell>
                                 <TableCell align="left"><SkipPreviousIcon className="pointer" onClick={() => dispatch({ type: "PRE", data: product })} />
                                     {product.soluong} <SkipNextIcon className="pointer" onClick={() => dispatch({ type: "INCREASE", data: product })} />
                                 </TableCell>

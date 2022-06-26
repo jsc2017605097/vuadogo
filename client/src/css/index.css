@@ -55,10 +55,7 @@ body,html,.MuiButton-root,.MuiTableCell-root,.MuiChip-root,.MuiTypography-h5,.Mu
 td{
     min-width: 100px;
 }
-.MuiCardContent-root{
-    height:196px !important;
-    overflow: auto;
-}
+
 .nav-a a{
     color:rgba(0,0,0,0.5) !important;
     padding-left: 10px;
