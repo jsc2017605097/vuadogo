@@ -16,6 +16,7 @@ const userRouter = require('./route/user')
 const loginRouter = require('./route/login')
 const categoryRouter = require('./route/category')
 const productRouter = require('./route/product')
+const introRouter = require('./route/intro')
 
 const MONGO_URI = process.env.MONGO_URI
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -61,6 +62,7 @@ app.get('/product/:id', async function (req, response) {
 app.use('/api/user', middleware.checkToken, userRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/category', categoryRouter)
+app.use('/api/intro', introRouter)
 app.use('/api/product', productRouter)
 app.get('/api/checktoken', middleware.checkToken, (req, res, next) => {
     res.status(200).json(req.decodeToken)

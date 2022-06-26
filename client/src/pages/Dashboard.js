@@ -1,6 +1,7 @@
 import React from 'react'
 import DialogAddProduct from '../quantri/dialog_add_product'
 import DialogAddCategory from '../quantri/dialog_add_category'
+import GioiThieuTrangWeb from '../quantri/gioi-thieu-trang-web'
 import Category from '../quantri/category'
 import Product from '../quantri/product'
 import Logout from '../quantri/logout'
@@ -30,6 +31,7 @@ export default function Dashboard() {
             <div className='flex  margin-bottom-30'>
                 <DialogAddProduct />
                 <DialogAddCategory />
+                <GioiThieuTrangWeb />
             </div>
             <div style={{padding:"10px"}}>
                 <Category /> 

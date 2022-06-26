@@ -1,0 +1,6 @@
+get http://localhost:3001/api/intro/62b80ab49c6d0e3e7ca135b8
+Content-Type: application/json
+
+{
+    "content":"giới thiệu về công ty"
+}
