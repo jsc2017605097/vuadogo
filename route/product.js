@@ -8,11 +8,17 @@ productRouter.get('/', async (req, res) => {
     res.status(200).json(products)
 })
 
+productRouter.get('/ngaunhien/:id', async (req, res) => {
+    const idDanhMuc = req.params.id;
+    const products = await productModel.find({ category: idDanhMuc }).sort({ "createdAt": -1 }).limit(3);
+    res.status(200).json(products)
+})
+
 productRouter.post('/', middleware.checkToken, async (req, res, next) => {
     if (req.body.img.length === 0) {
         return res.status(400).send("Ảnh không được để trống!")
     }
-    const objectProduct = { ...req.body}
+    const objectProduct = { ...req.body }
     const newProduct = new productModel(objectProduct)
     const savedProduct = await newProduct.save()
 

@@ -15,6 +15,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
+import ButtonDelete from '../../components/button_delete';
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -40,7 +41,7 @@ export default function FullScreenDialog() {
     const [price, setPrice] = React.useState(0)
     const [category, setCategory] = React.useState('')
     const [content, setContent] = React.useState('')
-
+    const [removedImg, setRemoveImg] = React.useState([])
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -89,7 +90,11 @@ export default function FullScreenDialog() {
             }
         }).then(res => setImages([...images, ...res.data]))
     }
-
+    function handleDeleteImg(link) {
+        setRemoveImg([...removedImg, link])
+        const newImages = images.filter(img => img !== link)
+        setImages(newImages)
+    }
     return (
         <div>
             <div onClick={handleClickOpen} className="flex margin-right-20">
@@ -117,11 +122,16 @@ export default function FullScreenDialog() {
                     </FormGroup>
                     <FormGroup>
                         <Label for="file">Ảnh sản phẩm</Label>
-                        <Input id='file' onChange={handleImage} accept="image/*" multiple type="file" name="file"/>
+                        <Input id='file' onChange={handleImage} accept="image/*" multiple type="file" name="file" />
                     </FormGroup>
                     <FormGroup>
                         {
-                            images.map((img, key) => <img key={key} alt="img" src={img} height="100px" style={{ margin: "10px 10px 0 0", boxShadow: "0.2px 0.2px 5px" }} />)
+                            images.map((img, key) => <div key={key} style={{ margin: "10px 10px 0 0", boxShadow: "0.2px 0.2px 5px", display: "inline-block" }}>
+                                <img alt="img" src={img} height="100px" />
+                                <div className="icon_delete_img">
+                                    <ButtonDelete onClick={() => handleDeleteImg(img)} />
+                                </div>
+                            </div>)
                         }
                     </FormGroup>
                     <FormGroup>

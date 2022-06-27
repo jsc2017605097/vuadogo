@@ -1,54 +1,32 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { Container } from "reactstrap"
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 const Example = (props) => {
+    const [content, setContent] = useState("");
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: '/api/intro/62b80ab49c6d0e3e7ca135b8',
+            headers: {
+                "Authorization": window.localStorage.getItem("token")
+            }
+        })
+            .then(res => {
+                setContent(res.data.content);
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }, [])
     return (
         <div>
             <Jumbotron>
                 <Container>
-                    <h1>VUA ĐỒ GỖ</h1>
-                    <p className="lead">vuadogo.org – CỬA HÀNG ĐỒ GỖ UY TÍN CHẤT LƯỢNG NHẤT MIỀN BẮC
-                    SĐT: <span style={{ color: 'red' }}>0333.02.5556 hoặc 0334985555</span>
-                        <br />
-                    Website: vuadogo.org
-                    <br />
-                    Facebook:<a href="https://www.facebook.com/CuahangVuadogo">Facebook</a>
-                        <br />
-                    Vua Đồ Gỗ hân hạnh là nhà sản xuất, nhà cung cấp trực tiếp các sản phẩm nội thất đồ gỗ với đa dạng mẫu mã đáp ứng mọi nhu cầu sử dụng từ nội thất phòng ngủ, phòng khách, phòng bếp đến trường học, văn phòng,… đảm bảo uy tín và luôn luôn đặt chất lượng lên hàng đầu.
-                        <br />
-                        <b>Các sản phẩm bán ra sơ lược</b>
-                        <br />
-                    + Nội thất phòng khách: chuyên cung cấp bàn ghế hoàng gia tân cổ điển, gỗ salon sang trọng, bàn trà gỗ, kệ tivi gỗ từ cao cấp đến bình dân, đồng hồ gỗ, tủ giày dép gỗ,…
-                    <br />
-                    + Nội thất phòng ngủ: cung cấp các sản phẩm giường ngủ gỗ tự nhiên, tủ quần áo gỗ hiện đại giá rẻ, táp đầu giường, bàn trang điểm (bàn phấn) gỗ, kệ túi,...
-                    <br />
-                    + Nội thất nhà bếp, phòng ăn: cung cấp các bộ bàn ăn gỗ, bàn gỗ, ghế gỗ, tủ rượu, kệ rượu,...
-                    <br />
-                    + Nội thất thờ cúng: cung cấp các sản phẩm bàn thờ gỗ, tủ thờ gỗ, sập thờ gỗ, án gian gỗ,...
-                    <br />
-                    + Nội thất khác:  cung cấp các sản phẩm tượng gỗ, tranh gỗ, bàn học sinh, bàn làm việc, bàn giám đốc, hộp trang điểm, đũa, hộp giấy gỗ, đốc lịch gỗ,...
-                    Ngoài ra, VUA ĐỒ GỖ còn nhận làm cửa gỗ, cầu thang gỗ, cửa đại hội, bậc thang gỗ,...
-                    <br />
-                    <br />
-                        <b>XƯỞNG CAM KẾT:</b>
-                        <br />
-                    - Nói KHÔNG với hàng kém chất lượng.
-                    <br />
-                    - Bảo hành, bảo trì chọn đời sản phẩm.
-                    <br />
-                    - Giá gốc tại Xưởng không qua trung gian. Giá luôn rẻ nhất. Rẻ hơn từ 3-10 triệu so với bình thường.
-                    <br />
-                    - Hàng có sẵn trong kho. Đa dạng mẫu mã.
-                    <br />
-                    - Khách có thể chọn Mộc, xưởng hoàn thiện theo yêu cầu của khách.
-                    <br />
-                    - Nhận đặt hàng theo yêu cầu.
-                    <br />
-                    - Nhận sửa chữa, làm mới bàn ghế cũ thành mới.
-                    <br />
-                    - Giao hàng và thanh toán tận nhà trên toàn quốc. Miễn phí vận chuyển phạm vi từ cửa hàng đi 30km.
-                    </p>
+                    <section
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    />
                     <hr className="my-2" />
                     <p>Để biết thêm thông tin chi tiết các sản phẩm nội thất đồ gỗ, quý khách vui lòng xem các sản phẩm dưới đây.</p>
                     <p className="lead">
