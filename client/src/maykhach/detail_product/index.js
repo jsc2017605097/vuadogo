@@ -90,13 +90,13 @@ export default function Detail({ product }) {
                     </div>
                 </div>
             </div>
-            <div className='abcxyz' style={{ width: '30%', marginLeft: '30px' }}>
+            <div className='abcxyz' style={{ marginLeft: '30px' }}>
                 <div style={{ background: "#3f51b5", color: "#FFFFFF", padding: "10px", display: 'flex', alignItems: "center" }}>
                     <span>Sản phẩm tương tự</span>
                 </div>
                 <div style={{ marginTop: "10px" }}>
                     {
-                        sanPhamTuongTu.map(p => <div><Card product={p} /><br></br></div>)
+                        sanPhamTuongTu.map(p => <div><Card product={p} sanPhamTuongTu={true} /><br></br></div>)
                     }
                 </div>
             </div>

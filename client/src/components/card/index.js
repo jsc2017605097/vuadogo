@@ -18,9 +18,25 @@ const useStyles = makeStyles({
     },
 });
 
-export default function MediaCard({ product }) {
+export default function MediaCard({ product, sanPhamTuongTu }) {
     const classes = useStyles();
-
+    if (sanPhamTuongTu) {
+        return (
+            <Link to={'/product/' + product._id}>
+                <div style={{ display: "flex" }}>
+                    <div style={{ marginRight:'10px'}}>
+                        <img src={product.img[0].toString()} width="100px" height="100px" alt="anh san pham" />
+                    </div>
+                    <div>
+                        <span style={{ color: "red" }}>{product.name}</span>
+                        <br />
+                        <del style={{ color: "rgba(0,0,0,0.5)" }}>{new Intl.NumberFormat().format(product.price + (product.price * 0.1)) + ' VNĐ'}</del>
+                        <br />
+                        <span style={{ fontWeight: "bold", color: "black" }}>{new Intl.NumberFormat().format(product.price) + ' VNĐ'}</span>
+                    </div>
+                </div>
+            </Link>)
+    }
     return (
         <Link to={'/product/' + product._id}>
             <Card className={classes.root}>
@@ -29,16 +45,17 @@ export default function MediaCard({ product }) {
                         className={classes.media}
                         image={product.img[0].toString()}
                         title="Contemplative Reptile"
+                        style={{ height: "400px" }}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h3">
-                            {product.name}
+                            <span style={{ color: "red" }}>{product.name}</span>
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                             <del>{new Intl.NumberFormat().format(product.price + (product.price * 0.1)) + ' VNĐ'}</del>
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            <span style={{ fontWeight: "bold", color: "red" }}>{new Intl.NumberFormat().format(product.price) + ' VNĐ'}</span>
+                            <span style={{ fontWeight: "bold", color: "black" }}>{new Intl.NumberFormat().format(product.price) + ' VNĐ'}</span>
                         </Typography>
                     </CardContent>
                 </CardActionArea>
